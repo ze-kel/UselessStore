@@ -1,17 +1,24 @@
 <template>
-  <div class="feature">
-    <div class="description">
-      <div class="additionalInfo">New Product</div>
-      <div class="mainTitle">XX99 MARK II HEADPHONES</div>
+  <div :class="styles.reversed ? 'reversed' : ''" class="featureContainer">
+    <div
+      class="description"
+      :class="styles.leftAlign ? 'noLeftMargin' : ''"
+      :style="{ color: styles.textColor }"
+    >
+      <div class="additionalInfo">{{ product.additionalLine }}</div>
+      <div class="mainTitle">{{ product.title }}</div>
       <div class="subText">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed
-        rutrum justo. Donec mattis libero nec luctus malesuada. Suspendisse
-        iaculis suscipit velit nec imperdiet. Sed tempus fringilla nibh, at
-        faucibus orci ornare vel.
+        {{ product.text }}
       </div>
-      <Button class="button" backColor="orange">TAKE A LOOK</Button>
+      <Button
+        class="button"
+        :backColor="styles.buttonBack"
+        :textColor="styles.buttonText"
+        :outline="styles.buttonOutline"
+        >{{ product.button }}</Button
+      >
     </div>
-    <div class="image"></div>
+    <img class="image" :src="getImgUrl(product.image)" />
   </div>
 </template>
 
@@ -19,21 +26,73 @@
 import Button from "./Button.vue";
 
 export default {
+  props: {
+    product: {
+      type: Object,
+      default: {
+        additionalLine: "New Product",
+        title: "XX99 MARK II HEADPHONES",
+        text: "",
+        button: "TAKE A LOOK",
+        image: "headphone01.png",
+      },
+    },
+    styles: {
+      type: Object,
+      default: {
+        leftAlign: false,
+        reversed: false,
+        textColor: "var(--mainText)",
+        buttonBack: "var(--accentMain)",
+        buttonText: "var(--mainText)",
+        buttonOutline: false,
+      },
+    },
+  },
+  methods: {
+    getImgUrl(pic) {
+      return require("../images/" + pic);
+    },
+  },
   components: { Button },
 };
 </script>
 
 <style lang="scss" scoped>
-.feature {
-  height: 400px;
+.featureContainer {
+  height: 100%;
   display: flex;
   justify-content: space-between;
+  &.reversed {
+    @media (min-width: 1000px) {
+      flex-direction: row-reverse;
+    }
+
+    & .description {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    .image {
+      transform: scale(1.025);
+    }
+  }
 }
 
 .description,
 .image {
   width: 48%;
-  height: 100%;
+  @media (max-width: 1000px) {
+    width: 90%;
+    text-align: center;
+  }
 }
 
 .description {
@@ -41,30 +100,53 @@ export default {
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
+  font-size: 1.3rem;
+
+  margin-left: 5rem;
+  &.noLeftMargin {
+    margin-left: 0;
+  }
+
+  & > * {
+    color: inherit;
+  }
+
+  @media (max-width: 1000px) {
+    margin-left: 0;
+    align-items: center;
+    width: 60%;
+  }
 }
 
 .image {
-  background-color: red;
+  transition: 0.4s all;
+  object-position: center;
+  object-fit: contain;
+  @media (max-width: 1000px) {
+    height: 45%;
+  }
 }
 
 .mainTitle {
-  font-weight: 700;
-  font-size: 65px;
-  line-height: 70px;
-  margin-top: 10px;
+  transition: 0.4s all;
+  font-weight: 600;
+  font-size: 5rem;
+  line-height: 5.5rem;
+  margin-top: 1rem;
 }
 
 .subText {
-  margin-top: 15px;
+  margin-top: 1.5rem;
 }
 
 .button {
-  margin-top: 20px;
+  margin-top: 2rem;
 }
 
 .additionalInfo {
+  font-size: 1.5rem;
   font-weight: 100;
-  letter-spacing: 10px;
+  letter-spacing: 1rem;
   text-transform: uppercase;
 }
 </style>

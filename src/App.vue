@@ -18,7 +18,12 @@ export default {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
-  color: hsl(0, 0%, 99%);
+  font-family: "Open Sans";
+  color: var(--mainText);
+  font-size: 1.4rem;
+}
+
+html {
+  font-size: 10px;
 }
 </style>

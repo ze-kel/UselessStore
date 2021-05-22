@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ backgroundColor: backColor, color: textColor }" class="button">
+  <div @click="console.log(this.stylesValues)" :style="stylesValues">
     <slot></slot>
   </div>
 </template>
@@ -11,15 +11,33 @@ export default {
       type: Boolean,
       default: false,
     },
-    textColor: { type: String, default: "black" },
+    textColor: { type: String, default: "yellow" },
     backColor: { type: String, default: "white" },
+  },
+  computed: {
+    stylesValues() {
+      if (this.outline) {
+        return {
+          color: this.textColor,
+          border: `.2rem solid ${this.backColor}`,
+        };
+      }
+      return { color: this.textColor, backgroundColor: this.backColor };
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .button {
-  padding: 15px 25px;
+  padding: 1.5rem 2.5rem;
   display: inline-block;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.1s all;
+
+  &:hover {
+    transform: scale(1.04);
+  }
 }
 </style>
