@@ -1,5 +1,4 @@
 <script>
-import Header from "../components/Header.vue";
 import FeaturedProduct from "../components/FeaturedProduct.vue";
 import SectionLink from "../components/SectionLink.vue";
 import Footer from "../components/Footer.vue";
@@ -15,69 +14,60 @@ export default {
       },
     };
   },
-  components: { Header, FeaturedProduct, SectionLink, Footer },
+  components: { FeaturedProduct, SectionLink, Footer },
 };
 </script>
 
 <template>
   <body>
     <div class="bgMainColor">
-      <Header></Header>
-      <div class="sizeContainer">
-        <div class="mainFeature">
-          <FeaturedProduct
-            :product="product"
-            :styles="{
-              leftAlign: true,
-              buttonBack: 'var(--accentMain)',
-              buttonText: 'var(--mainText)',
-            }"
-          ></FeaturedProduct>
-        </div>
-      </div>
-    </div>
-    <div class="sizeContainer">
-      <div class="sectionLinks">
-        <SectionLink></SectionLink>
-        <SectionLink></SectionLink>
-        <SectionLink></SectionLink>
-      </div>
-      <div class="secondaryFeature">
+      <div class="mainFeature sizeContainer">
         <FeaturedProduct
-          :product="{
-            ...product,
-            text: 'Its time to upgrade!',
-            additionalLine: '',
-          }"
+          :product="product"
           :styles="{
-            reversed: true,
-            buttonBack: 'var(--mainBackground)',
+            leftAlign: true,
+            buttonBack: 'var(--accentMain)',
             buttonText: 'var(--mainText)',
           }"
         ></FeaturedProduct>
       </div>
-      <div class="thirdaryFeature">
-        <FeaturedProduct
-          :product="{
-            ...product,
-            text: '',
-            additionalLine: '',
-          }"
-          :styles="{
-            textColor: 'var(--mainBackground)',
-            buttonBack: 'var(--mainBackground)',
-            buttonText: 'var(--mainBackground)',
-            buttonOutline: true,
-          }"
-        ></FeaturedProduct>
-      </div>
+    </div>
+    <div class="sectionLinks sizeContainer">
+      <SectionLink></SectionLink>
+      <SectionLink></SectionLink>
+      <SectionLink></SectionLink>
+    </div>
+    <div class="secondaryFeature sizeContainer">
+      <FeaturedProduct
+        :product="{
+          ...product,
+          text: 'Its time to upgrade!',
+          additionalLine: '',
+        }"
+        :styles="{
+          reversed: true,
+          buttonBack: 'var(--mainBackground)',
+          buttonText: 'var(--mainText)',
+        }"
+      ></FeaturedProduct>
+    </div>
+    <div class="thirdaryFeature sizeContainer">
+      <FeaturedProduct
+        :product="{
+          ...product,
+          text: '',
+          additionalLine: '',
+        }"
+        :styles="{
+          textColor: 'var(--mainBackground)',
+          buttonBack: 'var(--mainBackground)',
+          buttonText: 'var(--mainBackground)',
+          buttonOutline: true,
+        }"
+      ></FeaturedProduct>
     </div>
 
-    <div class="bgMainColor">
-      <div class="footerContainer sizeContainer">
-        <Footer></Footer>
-      </div>
-    </div>
+    <div class="bgMainColor"></div>
   </body>
 </template>
 
@@ -86,17 +76,8 @@ body {
   min-height: 100vh;
 }
 
-.sizeContainer {
-  width: 95%;
-  margin: 0 auto;
-
-  @media (min-width: 1100px) {
-    width: 1000px;
-  }
-}
-
 .mainFeature {
-  height: 60rem;
+  height: 50rem;
 }
 
 .sectionLinks {

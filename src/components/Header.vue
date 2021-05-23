@@ -14,6 +14,7 @@ export default {
 </script>
 
 <template>
+  <div class="headerContainer pageSpace"></div>
   <div class="headerContainer">
     <div class="sizeContainer">
       <div class="hamburger" @click="menuVisibilitySwtich">
@@ -48,9 +49,14 @@ export default {
 <style lang="scss" scoped>
 .headerContainer {
   position: fixed;
+  top: 0;
   width: 100%;
   background-color: var(--mainBackgroundTransparent);
   z-index: 1000;
+}
+.pageSpace {
+  position: relative;
+  background-color: none;
 }
 
 .sizeContainer {
@@ -91,13 +97,16 @@ export default {
 
   & .link {
     margin: 0 1rem;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
   @media (max-width: 1000px) {
     display: none;
+  }
+}
+
+.link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
 }
 

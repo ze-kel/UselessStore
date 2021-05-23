@@ -25,7 +25,7 @@ export default {};
 
 <style lang="scss" scoped>
 .footerContainer {
-  height: 15rem;
+  min-height: 15rem;
   width: 100%;
   padding: 2rem 0 3rem 0;
   display: flex;
@@ -39,7 +39,7 @@ export default {};
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  & > * {
+  & > *:not(:last-child) {
     margin-right: 2rem;
   }
 }
@@ -51,6 +51,7 @@ export default {};
 }
 
 .legal {
+  margin-top: 1rem;
   color: var(--mainTextLight);
   font-weight: 200;
 }

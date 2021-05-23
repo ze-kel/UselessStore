@@ -1,5 +1,9 @@
 <template>
-  <div :class="styles.reversed ? 'reversed' : ''" class="featureContainer">
+  <div
+    v-if="product !== null"
+    :class="styles.reversed ? 'reversed' : ''"
+    class="featureContainer"
+  >
     <div
       class="description"
       :class="styles.leftAlign ? 'noLeftMargin' : ''"
@@ -63,6 +67,7 @@ export default {
   height: 100%;
   display: flex;
   justify-content: space-between;
+
   &.reversed {
     @media (min-width: 1000px) {
       flex-direction: row-reverse;

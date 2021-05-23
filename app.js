@@ -23,7 +23,8 @@ if (process.env.NODE_ENV === "dev") {
   const devMiddleware = middleware(compiler);
   app.use(devMiddleware);
   app.use(hotMiddleWare(compiler));
-  app.use("*", (req, res, next) => {
+
+  const universalResponse = (req, res, next) => {
     const filename = path.join(compiler.outputPath, "index.html");
     console.log(filename);
     console.log("universal get");
@@ -35,7 +36,10 @@ if (process.env.NODE_ENV === "dev") {
         return res.end();
       });
     });
-  });
+  };
+  app.use("/products", universalResponse);
+  app.use("/", universalResponse);
+  app.use("*", universalResponse);
 } else {
   console.log("Starting static mode");
 
@@ -43,6 +47,7 @@ if (process.env.NODE_ENV === "dev") {
   const INDEX_PATH = path.resolve(DIST_PATH, "index.html");
 
   app.use("/", express.static(DIST_PATH));
+  app.use("/products", express.static(DIST_PATH));
   app.get("*", (req, res) => {
     console.log(req.url);
     console.log("universal get");

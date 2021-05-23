@@ -8,7 +8,7 @@ prodcutsRouter.get("/", async (request, response) => {
 
 prodcutsRouter.get("/:id", async (request, response) => {
   console.log("LOOKING FOR ID", request.params.id);
-  const result = DB.filter((item) => item.id === request.params.id);
+  const result = DB.find((item) => item.id === request.params.id);
   if (result) {
     response.json(result);
   } else {

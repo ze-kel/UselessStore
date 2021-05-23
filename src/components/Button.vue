@@ -1,5 +1,9 @@
 <template>
-  <div @click="console.log(this.stylesValues)" :style="stylesValues">
+  <div
+    class="button"
+    @click="console.log(this.stylesValues)"
+    :style="stylesValues"
+  >
     <slot></slot>
   </div>
 </template>
@@ -11,7 +15,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    textColor: { type: String, default: "yellow" },
+    textColor: { type: String, default: "black" },
     backColor: { type: String, default: "white" },
   },
   computed: {
