@@ -23,9 +23,9 @@ export default {
       </div>
       <div class="title">USLS</div>
       <div class="menuContainer">
-        <div class="link">Home</div>
-        <div class="link">Explore</div>
-        <div class="link">About us</div>
+        <router-link class="link" to="/">Home</router-link>
+        <router-link class="link" to="/explore">Explore</router-link>
+        <router-link class="link" to="/about">About us</router-link>
       </div>
       <div class="cart">Cart</div>
     </div>
@@ -37,9 +37,9 @@ export default {
         @click.self="menuVisibilitySwtich"
         class="fullScreenFade"
       >
-        <div class="link">Home</div>
-        <div class="link">Explore</div>
-        <div class="link">About us</div>
+        <router-link class="link" to="/">Home</router-link>
+        <router-link class="link" to="/explore">Explore</router-link>
+        <router-link class="link" to="/about">About us</router-link>
       </div>
     </transition>
   </div>
@@ -91,6 +91,10 @@ export default {
 
   & .link {
     margin: 0 1rem;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   @media (max-width: 1000px) {
     display: none;
