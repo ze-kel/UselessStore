@@ -1,18 +1,27 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const VueLoader = require("vue-loader");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 let mode = "development";
 
 if (process.env.NODE_ENV === "production") {
   mode = "production";
 }
+const additionalPlugins =
+  mode === "production" ? [] : [new webpack.HotModuleReplacementPlugin()]; // Enable hot module replacement
+
+const additionalEntries =
+  mode === "production"
+    ? []
+    : ["webpack-hot-middleware/client?http://localhost:8000"];
 
 module.exports = {
   mode: mode,
   output: {
     assetModuleFilename: "images/[hash][ext][query]",
   },
+  entry: ["./src", ...additionalEntries],
   module: {
     rules: [
       {
@@ -56,6 +65,7 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),
     new HtmlWebpackPlugin({ title: "USLS", template: "index.html" }),
+    ...additionalPlugins,
   ],
 
   //devtool: "source-map",
