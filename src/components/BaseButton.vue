@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="button"
-    @click="console.log(this.stylesValues)"
-    :style="stylesValues"
-  >
+  <div class="button" :style="stylesValues">
     <slot></slot>
   </div>
 </template>
@@ -26,7 +22,10 @@ export default {
           border: `.2rem solid ${this.backColor}`,
         };
       }
-      return { color: this.textColor, backgroundColor: this.backColor };
+      return {
+        color: this.textColor,
+        backgroundColor: this.backColor,
+      };
     },
   },
 };

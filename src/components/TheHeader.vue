@@ -31,11 +31,10 @@ export default {
       <div class="cart">Cart</div>
     </div>
     <div class="splitLine"></div>
-    <div class="headerPageSpace"></div>
     <transition name="fade">
       <div
         v-if="menuVisbility"
-        @click.self="menuVisibilitySwtich"
+        @click="menuVisibilitySwtich"
         class="fullScreenFade"
       >
         <router-link class="link" to="/">Home</router-link>
@@ -52,11 +51,12 @@ export default {
   top: 0;
   width: 100%;
   background-color: var(--mainBackgroundTransparent);
-  z-index: 1000;
+  z-index: 100;
 }
 .pageSpace {
   position: relative;
   background-color: none;
+  z-index: -1000;
 }
 
 .sizeContainer {
@@ -76,7 +76,7 @@ export default {
   flex-direction: column;
   height: 40%;
   justify-content: space-around;
-  @media (min-width: 1000px) {
+  @media (min-width: $bp-sm) {
     display: none;
     margin: 0;
   }
@@ -98,7 +98,7 @@ export default {
   & .link {
     margin: 0 1rem;
   }
-  @media (max-width: 1000px) {
+  @media (max-width: $bp-sm) {
     display: none;
   }
 }
@@ -111,7 +111,7 @@ export default {
 }
 
 .title {
-  font-weight: 900;
+  font-weight: 700;
   font-size: 2.5rem;
 }
 

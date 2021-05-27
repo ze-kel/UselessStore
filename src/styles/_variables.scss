@@ -5,7 +5,10 @@
   --secondaryTextLight: hsl(0, 0%, 31%);
   --mainBackground: hsl(0, 0%, 3%);
   --mainBackgroundTransparent: hsla(0, 0%, 3%, 0.9);
-  --secondaryBackground: hsl(0, 0%, 98%);
+  --secondaryBackground: hsl(0, 0%, 97%);
   --secondaryBackgroundLight: hsl(0, 0%, 90%);
-  --accentMain: rgb(189, 78, 78);
+  --accentMain: rgb(49, 71, 69);
 }
+
+$bp-med: 768px;
+$bp-sm: 576px;

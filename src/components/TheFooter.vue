@@ -3,28 +3,35 @@ export default {};
 </script>
 
 <template>
-  <div class="footerContainer">
-    <div class="aboutContainer">
-      <div class="title">USLS</div>
-      <div class="infoText">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum quidem
-        cumque quis vitae, molestias nemo! Quam placeat debitis quod non
-        laborum, esse corrupti veniam fugit repellendus magni ut.
+  <div class="sizeContainer">
+    <div class="footerContainer">
+      <div class="aboutContainer">
+        <div class="title">USLS</div>
+        <div class="infoText">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
+          quidem cumque quis vitae, molestias nemo! Quam placeat debitis quod
+          non laborum, esse corrupti veniam fugit repellendus magni ut.
+        </div>
+        <div class="legal">
+          Copyright © 2021 Useless Inc. All rights reserved.
+        </div>
       </div>
-      <div class="legal">
-        Copyright © 2021 Useless Inc. All rights reserved.
+      <div class="linkContainer">
+        <div class="gg-instagram"></div>
+        <div class="gg-facebook"></div>
+        <div class="gg-twitter"></div>
       </div>
-    </div>
-    <div class="linkContainer">
-      <div class="gg-instagram"></div>
-      <div class="gg-facebook"></div>
-      <div class="gg-twitter"></div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+* {
+  color: var(--secondaryText);
+}
+
 .footerContainer {
+  border-top: 1px solid var(--secondaryText);
   min-height: 15rem;
   width: 100%;
   padding: 2rem 0 3rem 0;
@@ -52,8 +59,8 @@ export default {};
 
 .legal {
   margin-top: 1rem;
-  color: var(--mainTextLight);
-  font-weight: 200;
+  color: var(--secondaryTextLight);
+  font-weight: 300;
 }
 
 .title {

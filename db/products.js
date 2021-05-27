@@ -1,19 +1,42 @@
 const db = [
   {
     id: "1",
-    additionalLine: "New Product",
-    title: "XX99 MARK II HEADPHONES",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic et ipsam quod facere ullam recusandae assumenda cumque a corrupti itaque unde, magni beatae magnam vero dicta laudantium accusantium dolore sapiente aspernatur ipsum necessitatibus alias? Porro nihil nostrum eius vel totam aliquid! Pariatur nostrum dicta, ducimus sed quia reprehenderit iusto aut!",
-    button: "TAKE A LOOK",
-    image: "headphone01.png",
+    name: "Human Hand",
+    images: ["HAND0000.png"],
+    info: "Shady Collection",
+    price: "49999",
+    details: {
+      Weight: "4kg",
+      Dimensions: "1 x 1 x 1 meters",
+      Useless: "Yes",
+      Collection: "2019 Autumn",
+    },
   },
   {
     id: "2",
-    additionalLine: "222",
-    title: "22 MARK II HEADPHONES",
-    text: "22",
-    button: "22 A LOOK",
-    image: "headphone01.png",
+    name: "Vulcanic Crab",
+    images: ["CRAB0000.png"],
+    info: "Vulcanic Collection",
+    price: "9999",
+    details: {
+      Weight: "4kg",
+      Dimensions: "1 x 1 x 1 meters",
+      Useless: "Yes",
+      Collection: "2019 Autumn",
+    },
+  },
+  {
+    id: "3",
+    name: "Paper Dino",
+    images: ["DINO0000.png"],
+    info: "Vulcanic Collection",
+    price: "89999",
+    details: {
+      Weight: "4kg",
+      Dimensions: "1 x 1 x 1 meters",
+      Useless: "Yes",
+      Collection: "2019 Autumn",
+    },
   },
 ];
 

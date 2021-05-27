@@ -44,7 +44,7 @@ export default {};
   margin-top: -15rem;
   height: 60%;
   width: 100%;
-  background-color: var(--secondaryBackground);
+  background-color: var(--secondaryBackgroundLight);
   border-radius: 1.2rem;
   z-index: -2;
 }
@@ -68,7 +68,7 @@ export default {};
   top: 60%;
   background: radial-gradient(#0000002a 0, #9198e500 50%);
   height: 2rem;
-  width: 60%;
+  width: 20rem;
   z-index: -1;
 }
 

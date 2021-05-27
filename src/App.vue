@@ -1,6 +1,6 @@
 <script>
-import Header from "./components/Header.vue";
-import Footer from "./components/Footer.vue";
+import Header from "./components/TheHeader.vue";
+import Footer from "./components/TheFooter.vue";
 export default {
   data() {
     return {
@@ -14,31 +14,23 @@ export default {
 <template>
   <Header></Header>
   <router-view></router-view>
-  <div class="footerContainer">
-    <div class="sizeContainer">
-      <Footer></Footer>
-    </div>
-  </div>
+  <Footer></Footer>
 </template>
 
 <style lang="scss">
 * {
   margin: 0;
   padding: 0;
-  font-family: "Open Sans";
+  font-family: "Work Sans";
   color: var(--mainText);
   font-size: 1.4rem;
+  box-sizing: border-box;
 }
 
 html {
   font-size: 10px;
+  background-color: var(--secondaryBackground);
 }
-
-.footerContainer {
-  background-color: var(--mainBackground);
-  margin-top: 3em;
-}
-
 .sizeContainer {
   width: 95%;
   margin: 0 auto;
@@ -46,5 +38,26 @@ html {
   @media (min-width: 1100px) {
     width: 1000px;
   }
+}
+
+.flexSimpleGrid {
+  display: flex;
+
+  & > * {
+    width: 100%;
+    @media (max-width: $bp-med) {
+      width: 90%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $bp-med) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.bgMainColor {
+  background-color: var(--mainBackground);
 }
 </style>

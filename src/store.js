@@ -2,13 +2,16 @@ import { createStore } from "vuex";
 
 export const store = createStore({
   state: {
-    products: {},
-    testData: "TETETETETETETET",
+    cart: {},
   },
   mutations: {
-    ADD_PRODUCTS(state, products) {
-      products.map((product) => (state.products[product.id] = product));
-      console.log("NEW STATE", state.products);
+    ADD_TO_CART(state, productId) {
+      console.log("in mutation", productId);
+      if (state.cart[productId]) {
+        state.cart[productId] += 1;
+      } else {
+        state.cart[productId] = 1;
+      }
     },
   },
 });

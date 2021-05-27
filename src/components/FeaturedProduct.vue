@@ -14,12 +14,12 @@
       <div class="subText">
         {{ product.text }}
       </div>
-      <Button
+      <BaseButton
         class="button"
         :backColor="styles.buttonBack"
         :textColor="styles.buttonText"
         :outline="styles.buttonOutline"
-        >{{ product.button }}</Button
+        >{{ product.button }}</BaseButton
       >
     </div>
     <img class="image" :src="getImgUrl(product.image)" />
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Button from "./Button.vue";
+import BaseButton from "./BaseButton.vue";
 
 export default {
   props: {
@@ -38,7 +38,7 @@ export default {
         title: "XX99 MARK II HEADPHONES",
         text: "",
         button: "TAKE A LOOK",
-        image: "headphone01.png",
+        image: "hand.png",
       },
     },
     styles: {
@@ -58,7 +58,7 @@ export default {
       return require("../images/" + pic);
     },
   },
-  components: { Button },
+  components: { BaseButton },
 };
 </script>
 
@@ -128,7 +128,7 @@ export default {
   object-position: center;
   object-fit: contain;
   @media (max-width: 1000px) {
-    height: 45%;
+    max-height: 50vh;
   }
 }
 

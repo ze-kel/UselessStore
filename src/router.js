@@ -1,8 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "./Home.vue";
-import Explore from "./Explore.vue";
-import About from "./About.vue";
-import ProductPage from "./ProductPage.vue";
+import Home from "./components/_Home.vue";
+import Explore from "./components/_Catalog.vue";
+import About from "./components/_About.vue";
+import ProductPage from "./components/_ProductPage.vue";
 
 const routes = [
   {

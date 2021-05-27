@@ -1,7 +1,6 @@
 <script>
-import FeaturedProduct from "../components/FeaturedProduct.vue";
-import SectionLink from "../components/SectionLink.vue";
-import Footer from "../components/Footer.vue";
+import FeaturedProduct from "./FeaturedProduct.vue";
+import SectionLink from "./SectionLink.vue";
 export default {
   data() {
     return {
@@ -14,7 +13,7 @@ export default {
       },
     };
   },
-  components: { FeaturedProduct, SectionLink, Footer },
+  components: { FeaturedProduct, SectionLink },
 };
 </script>
 
@@ -32,7 +31,7 @@ export default {
         ></FeaturedProduct>
       </div>
     </div>
-    <div class="sectionLinks sizeContainer">
+    <div class="sectionLinks flexSimpleGrid sizeContainer">
       <SectionLink></SectionLink>
       <SectionLink></SectionLink>
       <SectionLink></SectionLink>
@@ -74,44 +73,39 @@ export default {
 <style lang="scss" scoped>
 body {
   min-height: 100vh;
+  margin-bottom: 3rem;
 }
 
 .mainFeature {
-  height: 50rem;
+  min-height: 50rem;
+  padding-bottom: 3rem;
 }
 
 .sectionLinks {
-  display: flex;
   & > * {
-    width: 100%;
-    @media (min-width: 1100px) {
+    max-width: 50rem;
+    @media (min-width: $bp-med) {
       &:not(:last-child) {
         margin-right: 4rem;
       }
     }
   }
-  @media (max-width: 1100px) {
-    flex-direction: column;
-  }
-}
-
-.bgMainColor {
-  background-color: var(--mainBackground);
 }
 
 .secondaryFeature {
-  height: 45rem;
+  min-height: 45rem;
   margin-top: 4rem;
   background-color: var(--accentMain);
-  padding: 0 2rem;
+  padding: 2rem;
   border-radius: 2rem;
 }
 
 .thirdaryFeature {
-  height: 30rem;
+  padding-bottom: 2rem;
+  min-height: 30rem;
   margin-top: 4rem;
   background-color: var(--secondaryBackgroundLight);
-  padding: 0 2rem;
+  padding: 2rem;
   border-radius: 2rem;
 }
 
