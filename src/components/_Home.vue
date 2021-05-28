@@ -1,6 +1,7 @@
 <script>
-import FeaturedProduct from "./FeaturedProduct.vue";
+import FeaturedProduct from "./FeaturedSection.vue";
 import SectionLink from "./SectionLink.vue";
+import BaseButton from "./BaseButton.vue";
 export default {
   data() {
     return {
@@ -9,26 +10,43 @@ export default {
         title: "XX99 MARK II HEADPHONES",
         text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis quam nesciunt iure voluptatibus ipsum sapiente voluptatum quos vitae voluptas tenetur, dolorem atque tempore labore porro!",
         button: "TAKE A LOOK",
-        image: "headphone01.png",
+        image: "CUBES0000.png",
       },
     };
   },
-  components: { FeaturedProduct, SectionLink },
+  components: { FeaturedProduct, SectionLink, BaseButton },
 };
 </script>
 
 <template>
-  <body>
+  <div class="wrapper">
     <div class="bgMainColor">
       <div class="mainFeature sizeContainer">
         <FeaturedProduct
-          :product="product"
+          :content="{
+            image: 'CUBES0000.png',
+          }"
           :styles="{
             leftAlign: true,
-            buttonBack: 'var(--accentMain)',
-            buttonText: 'var(--mainText)',
           }"
-        ></FeaturedProduct>
+        >
+          <template v-slot:title>VULCANIC RED</template>
+          <template v-slot:addLine>NEW COLLECTION</template>
+          <template v-slot:text>
+            So hot I'm blushing.
+            <br />
+            New collection with magma vibes <br />
+            for the hottest summer of 2021. <br />
+            Awailable now.
+          </template>
+          <template v-slot:button>
+            <router-link to="/explore?collection=Vulcanic '2021">
+              <BaseButton textColor="white" backColor="var(--accentMain)">
+                TAKE A LOOK
+              </BaseButton>
+            </router-link>
+          </template>
+        </FeaturedProduct>
       </div>
     </div>
     <div class="sectionLinks flexSimpleGrid sizeContainer">
@@ -38,41 +56,36 @@ export default {
     </div>
     <div class="secondaryFeature sizeContainer">
       <FeaturedProduct
-        :product="{
+        :content="{
           ...product,
           text: 'Its time to upgrade!',
           additionalLine: '',
         }"
         :styles="{
           reversed: true,
-          buttonBack: 'var(--mainBackground)',
-          buttonText: 'var(--mainText)',
         }"
       ></FeaturedProduct>
     </div>
     <div class="thirdaryFeature sizeContainer">
       <FeaturedProduct
-        :product="{
+        :content="{
           ...product,
           text: '',
           additionalLine: '',
         }"
         :styles="{
           textColor: 'var(--mainBackground)',
-          buttonBack: 'var(--mainBackground)',
-          buttonText: 'var(--mainBackground)',
           buttonOutline: true,
         }"
       ></FeaturedProduct>
     </div>
 
     <div class="bgMainColor"></div>
-  </body>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-body {
-  min-height: 100vh;
+.wrapper {
   margin-bottom: 3rem;
 }
 

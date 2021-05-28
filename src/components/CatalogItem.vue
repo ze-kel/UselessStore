@@ -1,4 +1,6 @@
 <script>
+import ImageHoverFlipper from "./ImageHoverFlipper.vue";
+
 export default {
   props: {
     product: {},
@@ -8,17 +10,20 @@ export default {
       return require("../images/" + pic);
     },
   },
+  components: { ImageHoverFlipper },
 };
 </script>
 
 <template>
   <div class="itemContainer">
-    <img :src="getImgUrl(product.images[0])" />
+    <div class="imageContainer">
+      <ImageHoverFlipper :images="product.images"></ImageHoverFlipper>
+    </div>
     <div class="text">
       <div class="name">
         {{ product.name }}
       </div>
-      <div class="info">{{ product.info }}</div>
+      <div class="info">{{ product.collection }}</div>
       <div class="price">{{ product.price }} ₽</div>
     </div>
   </div>
@@ -39,15 +44,16 @@ export default {
   &:hover {
     border: 0.1rem solid var(--mainBackground);
 
-    img {
+    .imageContainer {
       transform: scale(1.05) translateY(-0.5rem);
     }
   }
 }
 
-img {
-  width: 100%;
-  transition: 0.2s all;
+.imageContainer {
+  margin: 0 0.1rem;
+  width: 85%;
+  height: 20rem;
 }
 
 .text > * {

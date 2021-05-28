@@ -1,8 +1,6 @@
 import axios from "axios";
 const baseUrl = "/api/products";
 
-import { store } from "../store";
-
 const getAll = async () => {
   const request = await axios.get(baseUrl);
   return request.data;

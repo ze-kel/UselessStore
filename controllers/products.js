@@ -1,10 +1,10 @@
-const DB = require("../db/products");
+const DB = require("../db/productsDB");
 
 const productsRouter = require("express").Router();
 
 productsRouter.get("/", async (request, response) => {
   const offset = Number(request.query.offset) || 0;
-  const limit = Number(request.query.limit) || 2;
+  const limit = Number(request.query.limit) || 100;
   response.json(DB.slice(offset, offset + limit));
 });
 

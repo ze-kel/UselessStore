@@ -31,6 +31,10 @@ html {
   font-size: 10px;
   background-color: var(--secondaryBackground);
 }
+
+body {
+  overflow-y: scroll;
+}
 .sizeContainer {
   width: 95%;
   margin: 0 auto;

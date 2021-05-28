@@ -2,15 +2,18 @@ import { createStore } from "vuex";
 
 export const store = createStore({
   state: {
-    cart: {},
+    cart: {
+      2: 4,
+      1: 1,
+    },
   },
   mutations: {
-    ADD_TO_CART(state, productId) {
-      console.log("in mutation", productId);
-      if (state.cart[productId]) {
-        state.cart[productId] += 1;
+    ADD_TO_CART(state, id) {
+      console.log("mutation");
+      if (state.cart[id]) {
+        state.cart[id] += 1;
       } else {
-        state.cart[productId] = 1;
+        state.cart[id] = number;
       }
     },
   },

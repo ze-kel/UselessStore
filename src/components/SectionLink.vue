@@ -5,7 +5,7 @@ export default {};
 <template>
   <div class="sectionLinkContainer">
     <div class="content">
-      <img class="image" src="../images/headphone01.png" />
+      <img class="image" src="../images/CUBES0000.png" />
       <div class="shadow"></div>
       <div class="title">HEADPHONES</div>
       <div class="link">

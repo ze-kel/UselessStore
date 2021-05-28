@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="product !== null"
+    v-if="content !== null"
     :class="styles.reversed ? 'reversed' : ''"
     class="featureContainer"
   >
@@ -9,20 +9,16 @@
       :class="styles.leftAlign ? 'noLeftMargin' : ''"
       :style="{ color: styles.textColor }"
     >
-      <div class="additionalInfo">{{ product.additionalLine }}</div>
-      <div class="mainTitle">{{ product.title }}</div>
+      <div class="additionalInfo"><slot name="addLine"></slot></div>
+      <div class="mainTitle"><slot name="title"></slot></div>
       <div class="subText">
-        {{ product.text }}
+        <slot name="text"></slot>
       </div>
-      <BaseButton
-        class="button"
-        :backColor="styles.buttonBack"
-        :textColor="styles.buttonText"
-        :outline="styles.buttonOutline"
-        >{{ product.button }}</BaseButton
-      >
+      <div class="slot">
+        <slot name="button"></slot>
+      </div>
     </div>
-    <img class="image" :src="getImgUrl(product.image)" />
+    <img class="image" :src="getImgUrl(content.image)" />
   </div>
 </template>
 
@@ -31,14 +27,13 @@ import BaseButton from "./BaseButton.vue";
 
 export default {
   props: {
-    product: {
+    content: {
       type: Object,
       default: {
         additionalLine: "New Product",
         title: "XX99 MARK II HEADPHONES",
         text: "",
-        button: "TAKE A LOOK",
-        image: "hand.png",
+        image: "CUBES0000.png",
       },
     },
     styles: {
@@ -47,9 +42,6 @@ export default {
         leftAlign: false,
         reversed: false,
         textColor: "var(--mainText)",
-        buttonBack: "var(--accentMain)",
-        buttonText: "var(--mainText)",
-        buttonOutline: false,
       },
     },
   },
@@ -144,13 +136,13 @@ export default {
   margin-top: 1.5rem;
 }
 
-.button {
+.slot {
   margin-top: 2rem;
 }
 
 .additionalInfo {
   font-size: 1.5rem;
-  font-weight: 100;
+  font-weight: 200;
   letter-spacing: 1rem;
   text-transform: uppercase;
 }

@@ -1,6 +1,7 @@
 <script>
 import productService from "../services/products";
 import Button from "./BaseButton.vue";
+import ImageFlipper from "./ImageGalleryFlipper.vue";
 
 export default {
   data() {
@@ -13,7 +14,7 @@ export default {
       return require("../images/" + pic);
     },
     addToCart() {
-      this.$store.commit("ADD_TO_CART", this.$route.params.id);
+      this.$store.commit("ADD_TO_CART", this.product);
     },
   },
   computed: {
@@ -21,7 +22,7 @@ export default {
       return this.$store.state.cart;
     },
   },
-  components: { Button },
+  components: { Button, ImageFlipper },
   mounted() {
     productService
       .getProduct(this.$route.params.id)
@@ -35,15 +36,15 @@ export default {
     <div class="sizeContainer">
       <div class="flexSimpleGrid">
         <div class="imageContainer">
-          <img class="image" :src="getImgUrl(product.images[0])" />
+          <ImageFlipper :images="product.images"> </ImageFlipper>
         </div>
         <div class="productInfo">
           <div class="mainTitle">{{ product.name }}</div>
-          <div class="description">
-            {{ product.description }}
-            {{ cart }}
-          </div>
-          <Button @click="addToCart()" :textColor="'black'" :backColor="'white'"
+          <div class="price">{{ product.price }} ₽</div>
+          <Button
+            @click="addToCart()"
+            :textColor="'var(--secondaryText)'"
+            :backColor="'white'"
             >Add to Cart</Button
           >
         </div>
@@ -71,7 +72,7 @@ export default {
 }
 
 .wrapper {
-  min-height: 80vh;
+  padding-bottom: 8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -101,9 +102,19 @@ export default {
   }
 }
 
+.price {
+  font-weight: 200;
+  font-size: 4rem;
+  margin-top: 1rem;
+}
+
 img {
   width: 100%;
   height: 100%;
+}
+
+.imageContainer {
+  margin-top: 1rem;
 }
 
 .productInfo {
@@ -127,10 +138,6 @@ img {
     font-size: 5rem;
     line-height: 5.5rem;
     margin-top: 1rem;
-  }
-
-  .description {
-    margin-top: 1.5rem;
   }
 
   .button {

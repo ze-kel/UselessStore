@@ -38,7 +38,7 @@ export default {
   cursor: pointer;
   font-weight: 500;
   transition: 0.1s all;
-
+  user-select: none;
   &:hover {
     transform: scale(1.04);
   }

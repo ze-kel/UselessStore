@@ -5,8 +5,18 @@ export default {
       menuVisbility: false,
     };
   },
+  computed: {
+    cartCounter() {
+      const cartArray = Object.entries(this.$store.state.cart);
+
+      if (cartArray.length < 1) {
+        return 0;
+      }
+      return cartArray.reduce((a, b) => ["v", a[1] + b[1]])[1];
+    },
+  },
   methods: {
-    menuVisibilitySwtich() {
+    menuVisibilitySwitch() {
       this.menuVisbility = !this.menuVisbility;
     },
   },
@@ -17,7 +27,7 @@ export default {
   <div class="headerContainer pageSpace"></div>
   <div class="headerContainer">
     <div class="sizeContainer">
-      <div class="hamburger" @click="menuVisibilitySwtich">
+      <div class="hamburger" @click="menuVisibilitySwitch">
         <div class="hamburgerPart"></div>
         <div class="hamburgerPart"></div>
         <div class="hamburgerPart"></div>
@@ -28,13 +38,20 @@ export default {
         <router-link class="link" to="/explore">Explore</router-link>
         <router-link class="link" to="/about">About us</router-link>
       </div>
-      <div class="cart">Cart</div>
+      <router-link class="cartLink" to="/cart">
+        <div class="cart">
+          Cart
+          <span v-if="cartCounter > 0" class="cartCounter">{{
+            cartCounter
+          }}</span>
+        </div>
+      </router-link>
     </div>
     <div class="splitLine"></div>
     <transition name="fade">
       <div
         v-if="menuVisbility"
-        @click="menuVisibilitySwtich"
+        @click="menuVisibilitySwitch"
         class="fullScreenFade"
       >
         <router-link class="link" to="/">Home</router-link>
@@ -46,6 +63,26 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.cart {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartCounter {
+  margin-left: 1rem;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  background-color: var(--accentMain);
+}
+
+.cartLink {
+  text-decoration: none;
+}
+
 .headerContainer {
   position: fixed;
   top: 0;

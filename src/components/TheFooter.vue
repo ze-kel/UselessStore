@@ -8,9 +8,11 @@ export default {};
       <div class="aboutContainer">
         <div class="title">USLS</div>
         <div class="infoText">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum
-          quidem cumque quis vitae, molestias nemo! Quam placeat debitis quod
-          non laborum, esse corrupti veniam fugit repellendus magni ut.
+          Useless since 2014.
+          <br />3d models by
+          <a href="https://www.myminifactory.com/scantheworld/"
+            >scan the world</a
+          >
         </div>
         <div class="legal">
           Copyright © 2021 Useless Inc. All rights reserved.

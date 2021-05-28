@@ -5,37 +5,67 @@ import CatalogItem from "./CatalogItem.vue";
 export default {
   data() {
     return {
-      pageNumber: 0,
-      pageData: [],
-      pageSize: 8,
-      totalSize: -1,
+      filtersSeen: true,
+      itemsData: [],
+      filters: {
+        name: "",
+        priceFrom: 0,
+        priceTo: 9999999,
+        collections: [],
+      },
     };
   },
   computed: {
-    renderedPage() {
-      if (!this.pageData[this.pageNumber]) {
-        return null;
-      } else {
-        return this.pageData[this.pageNumber];
-      }
-    },
-  },
-  watch: {
-    pageNumber: {
-      immediate: true,
-      async handler(newVal) {
-        if (!this.pageData[newVal]) {
-          const loadedPage = await productService.getPage(
-            this.pageNumber,
-            this.pageSize
-          );
-          this.pageData[newVal] = loadedPage;
+    filteredItems() {
+      const allFilters = (item) => {
+        //name
+        if (this.filters.name.length > 0) {
+          if (
+            !item.name.toLowerCase().includes(this.filters.name.toLowerCase())
+          ) {
+            return false;
+          }
         }
-      },
+
+        //priceFrom
+        if (this.filters.priceFrom > 0) {
+          if (Number(item.price) < this.filters.priceFrom) {
+            return false;
+          }
+        }
+
+        //priceTo
+        if (this.filters.priceTo < 9999999) {
+          if (Number(item.price) > this.filters.priceTo) {
+            return false;
+          }
+        }
+
+        //collections
+        if (this.filters.collections.length > 0) {
+          if (!this.filters.collections.includes(item.collection)) {
+            return false;
+          }
+        }
+
+        return true;
+      };
+
+      return this.itemsData.filter(allFilters);
+    },
+    awailableCollections() {
+      function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
+
+      return this.itemsData.map((item) => item.collection).filter(onlyUnique);
     },
   },
   mounted() {
-    productService.getSize().then((result) => (this.totalSize = result));
+    if (this.$route.query.collection) {
+      this.filters.collections.push(this.$route.query.collection);
+    }
+    productService.getAll().then((result) => (this.itemsData = result));
   },
   components: { CatalogItem },
 };
@@ -43,18 +73,51 @@ export default {
 
 <template>
   <div class="">
-    <div class="sizeContainer paddingTop2">
-      <div class="container">
-        <template v-if="renderedPage !== null">
+    <div class="sizeContainer flexSimpleGrid padding2">
+      <div class="itemsContainer">
+        <template v-if="itemsData.length > 0">
           <router-link
             class="link"
             :key="item.id"
-            v-for="item in renderedPage"
+            v-for="item in filteredItems"
             :to="'/products/' + item.id"
           >
             <CatalogItem class="item" :product="item"></CatalogItem
           ></router-link>
         </template>
+      </div>
+      <div :class="filtersSeen ? 'showFilters' : ''" class="filterContainer">
+        <div class="filtersSectionTitle">FILTER BY</div>
+        <div class="filterName">Name:</div>
+        <input class="textInput" v-model="filters.name" />
+        <div class="filterName">Price:</div>
+        <div class="priceBlock">
+          <label class="priceLabel" for="priceFrom">From</label>
+          <input
+            id="priceFrom"
+            class="priceInput"
+            v-model="filters.priceFrom"
+          />
+        </div>
+        <div class="priceBlock">
+          <label class="priceLabel" for="priceFrom">To</label>
+          <input id="priceTo" class="priceInput" v-model="filters.priceTo" />
+        </div>
+        <div class="filterName">Collections:</div>
+        <div
+          :key="index"
+          class="collectionFilterItem"
+          v-for="(collecitem, index) in awailableCollections"
+        >
+          <input
+            :id="'colection_checkbox_' + index"
+            class="checkboxInput"
+            type="checkbox"
+            v-model="filters.collections"
+            :value="collecitem"
+          />
+          <label :for="'colection_checkbox_' + index"> {{ collecitem }}</label>
+        </div>
       </div>
     </div>
   </div>
@@ -65,19 +128,114 @@ export default {
   color: black;
 }
 
+.itemsContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .link {
   text-decoration: none;
 }
 
-input {
-  height: 4rem;
+.filtersSectionTitle {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.8rem;
 }
 
-.paddingTop2 {
+.collectionFilterItem {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.priceBlock {
+  & label {
+    font-weight: 400;
+  }
+
+  & input {
+    margin: 0.5rem 0 1.5rem 0;
+    opacity: 30%;
+    height: 3rem;
+    line-height: 2.5rem;
+
+    &:focus {
+      opacity: 100%;
+    }
+  }
+}
+
+.priceLabel {
+  display: flex;
+}
+
+.textInput,
+.priceInput {
+  width: 100%;
+  height: 2rem;
+  line-height: 4rem;
+  background-color: var(--secondaryBackground);
+  border-radius: 0;
+  border: none;
+
+  border-top: 0.1rem solid transparent;
+  border-bottom: 0.1rem solid var(--secondaryText);
+  transition: 0.2s all;
+
+  font-weight: 600;
+
+  color: var(--secondaryTextLight);
+
+  &.priceInput {
+    width: 40%;
+  }
+
+  &:focus {
+    border-top: 0.3rem solid transparent;
+    border-bottom: 0.3rem solid var(--secondaryText);
+    color: var(--secondaryText);
+    outline: none;
+  }
+}
+
+.checkboxInput {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.5rem;
+  appearance: none;
+  border: 0.1rem solid var(--secondaryText);
+  border-radius: 0;
+  transition: 0.1s all;
+
+  &:checked {
+    background-color: var(--secondaryText);
+  }
+}
+
+.filterContainer {
+  width: 35%;
+  border-left: 1px solid var(--secondaryText);
+  padding-left: 3rem;
+  padding-bottom: 1rem;
+}
+
+.padding2 {
   padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
-.container {
+.filterName {
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  &:not(:first-of-type) {
+    margin-top: 3rem;
+  }
+}
+
+.itemsContainer {
   display: flex;
   flex-wrap: wrap;
 }
