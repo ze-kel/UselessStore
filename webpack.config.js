@@ -35,7 +35,7 @@ module.exports = {
         type: "asset",
       },
       {
-        test: /\.s?css$/i,
+        test: /\.scss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,

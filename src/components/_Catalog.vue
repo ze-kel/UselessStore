@@ -150,69 +150,23 @@ export default {
   align-items: center;
 }
 
+.priceLabel {
+  display: flex;
+}
+
+
+
 .priceBlock {
   & label {
     font-weight: 400;
   }
 
   & input {
-    margin: 0.5rem 0 1.5rem 0;
-    opacity: 30%;
-    height: 3rem;
-    line-height: 2.5rem;
-
-    &:focus {
-      opacity: 100%;
-    }
-  }
-}
-
-.priceLabel {
-  display: flex;
-}
-
-.textInput,
-.priceInput {
-  width: 100%;
-  height: 2rem;
-  line-height: 4rem;
-  background-color: var(--secondaryBackground);
-  border-radius: 0;
-  border: none;
-
-  border-top: 0.1rem solid transparent;
-  border-bottom: 0.1rem solid var(--secondaryText);
-  transition: 0.2s all;
-
-  font-weight: 600;
-
-  color: var(--secondaryTextLight);
-
-  &.priceInput {
     width: 40%;
-  }
-
-  &:focus {
-    border-top: 0.3rem solid transparent;
-    border-bottom: 0.3rem solid var(--secondaryText);
-    color: var(--secondaryText);
-    outline: none;
+    margin: 0.5rem 0 1.5rem 0;
   }
 }
 
-.checkboxInput {
-  width: 1.6rem;
-  height: 1.6rem;
-  margin-right: 0.5rem;
-  appearance: none;
-  border: 0.1rem solid var(--secondaryText);
-  border-radius: 0;
-  transition: 0.1s all;
-
-  &:checked {
-    background-color: var(--secondaryText);
-  }
-}
 
 .filterContainer {
   width: 35%;

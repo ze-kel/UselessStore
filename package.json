@@ -35,6 +35,7 @@
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
     "regenerator-runtime": "^0.13.7",
+    "vee-validate": "^4.4.2",
     "vue": "^3.0.11",
     "vue-loader": "^16.2.0",
     "vue-router": "^4.0.8",

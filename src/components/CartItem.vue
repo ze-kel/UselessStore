@@ -1,52 +1,171 @@
-<template>
-  <div class="itemContainer" v-if="product !== null">
-    <div class="imageContainer">
-      <img :src="getImgUrl(product.images[0])" />
-    </div>
-    <div class="textContainer">
-      <div class="name">
-        {{ product.name }}
-      </div>
-
-      <div class="num">x{{ number }}</div>
-    </div>
-  </div>
-</template>
-
 <script>
+import BaseButton from "./BaseButton.vue";
+import formatter from "../services/priceFormatter";
 export default {
+  data() {
+    return {
+      deletionPopup: false,
+    };
+  },
   methods: {
     getImgUrl(pic) {
       return require("../images/" + pic);
+    },
+    modifyQuantity(toAdd) {
+      if (this.number + toAdd <= 0) {
+        this.deletionPopup = true;
+      } else {
+        this.$store.commit("MODIFY_QUANTITY", {
+          id: this.product.id,
+          add: toAdd,
+        });
+      }
+    },
+    removeFromCart() {
+      this.$store.commit("DELETE_FROM_CART", this.product.id);
+    },
+    removeDeletionPopup() {
+      this.deletionPopup = false;
+    },
+  },
+  computed: {
+    totalPrice() {
+      return formatter.format(Number(this.product.price) * Number(this.number));
+    },
+    basePrice() {
+      return formatter.format(Number(this.product.price));
     },
   },
   props: {
     product: Object,
     number: Number,
   },
+  components: {
+    BaseButton,
+  },
 };
 </script>
 
+<template>
+  <div class="itemContainer" v-if="product !== null">
+    <div class="deletionPopup" v-if="deletionPopup">
+      Remove Item? <BaseButton @click="removeFromCart">YES</BaseButton>
+      <BaseButton @click="removeDeletionPopup">NO</BaseButton>
+    </div>
+    <div class="productInfo">
+      <div class="imageContainer">
+        <img :src="getImgUrl(product.images[0])" />
+      </div>
+
+      <div class="name">
+        {{ product.name }}
+      </div>
+    </div>
+
+    <div class="totalPrice">{{ totalPrice }}</div>
+    <div class="quantityBlock">
+      <div class="priceForOne">
+        {{ basePrice }}
+      </div>
+      <div class="numberBlock">
+        <div @click="modifyQuantity(-1)" class="quantityButton">-</div>
+        <div class="num">{{ number }}</div>
+        <div @click="modifyQuantity(1)" class="quantityButton">+</div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style lang="scss" scoped>
+* {
+  color: var(--secondaryText);
+}
+
 .itemContainer {
   height: 6rem;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
+  position: relative;
+  justify-content: space-between;
   padding-bottom: 0.5rem;
-  margin-bottom: 2rem;
+}
+
+.deletionPopup {
+  width: 100%;
+  height: 100%;
+  opacity: 100%;
+  background-color: var(--secondaryText);
+  color: white;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 10;
+}
+
+.productInfo {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  & .name {
+    margin-left: 1rem;
+  }
+}
+
+.totalPrice {
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 3rem;
+}
+
+.numberBlock {
+  display: flex;
+  align-items: center;
+
+  & .num {
+    width: 3rem;
+  }
+
+  &:hover {
+    .quantityButton {
+      opacity: 100%;
+    }
+  }
+}
+
+.priceForOne {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.quantityButton {
+  width: 1.5rem;
+  font-size: 3rem;
+  opacity: 10%;
+  transition: 0.2s all;
+  user-select: none;
+}
+
+.quantityBlock {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .num {
-  font-weight: 700;
-  font-size: 4rem;
-  color: var(--secondaryText);
+  font-weight: 300;
+  font-size: 3rem;
+  text-align: center;
+  margin: 0 0.5rem;
 }
 
 .name {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
-  color: var(--secondaryText);
 }
 
 .textContainer {

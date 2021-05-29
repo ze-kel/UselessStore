@@ -3,6 +3,8 @@ import productService from "../services/products";
 import Button from "./BaseButton.vue";
 import ImageFlipper from "./ImageGalleryFlipper.vue";
 
+import formatter from "../services/priceFormatter";
+
 export default {
   data() {
     return {
@@ -14,12 +16,15 @@ export default {
       return require("../images/" + pic);
     },
     addToCart() {
-      this.$store.commit("ADD_TO_CART", this.product);
+      this.$store.commit("ADD_TO_CART", this.product.id);
     },
   },
   computed: {
     cart() {
       return this.$store.state.cart;
+    },
+    formattedPrice() {
+      return formatter.format(this.product.price);
     },
   },
   components: { Button, ImageFlipper },
@@ -40,7 +45,7 @@ export default {
         </div>
         <div class="productInfo">
           <div class="mainTitle">{{ product.name }}</div>
-          <div class="price">{{ product.price }} ₽</div>
+          <div class="price">{{ formattedPrice }}</div>
           <Button
             @click="addToCart()"
             :textColor="'var(--secondaryText)'"

@@ -71,6 +71,8 @@ export default {
 }
 
 .cartCounter {
+  width: 3rem;
+  text-align: center;
   margin-left: 1rem;
   display: block;
   padding: 0.5rem;

@@ -1,7 +1,11 @@
 <script>
 import CartItem from "./CartItem.vue";
+import BaseButton from "./BaseButton.vue";
+import CheckoutForm from "./CheckoutForm.vue";
 
 import productService from "../services/products";
+
+import formatter from "../services/priceFormatter";
 
 export default {
   data() {
@@ -18,11 +22,13 @@ export default {
     },
     totalPrice() {
       let price = 0;
-      for (const item of Object.entries(this.fetchedItems)) {
-        console.log("item price", Number(item[1].price));
-        price += Number(item[1].price) * Number(this.cartContent[item[1].id]);
+      for (const id of this.cartIds) {
+        if (this.fetchedItems[id]) {
+          price +=
+            Number(this.fetchedItems[id].price) * Number(this.cartContent[id]);
+        }
       }
-      return price;
+      return formatter.format(price);
     },
   },
   watch: {
@@ -37,7 +43,7 @@ export default {
       },
     },
   },
-  components: { CartItem },
+  components: { CartItem, BaseButton, CheckoutForm },
 };
 </script>
 
@@ -46,15 +52,28 @@ export default {
     <div class="cartHeader">CART</div>
     <div class="flexSimpleGrid">
       <div class="items">
-        <CartItem
-          :key="item[0]"
-          :product="item[1]"
-          :number="cartContent[item[0]]"
-          v-for="item in Object.entries(fetchedItems)"
-        ></CartItem>
+        <template :key="id" v-for="id in cartIds">
+          <CartItem
+            v-if="fetchedItems[id]"
+            :product="fetchedItems[id]"
+            :number="cartContent[id]"
+          ></CartItem>
+          <div class="splitter"></div>
+        </template>
       </div>
-      <div class="totals">{{ totalPrice }}</div>
+      <div class="totals">
+        <div class="totalTitle">Total:</div>
+        <div class="price">{{ totalPrice }}</div>
+        <BaseButton
+          textColor="var(--mainText)"
+          backColor="var(--mainBackground)"
+          >CHECKOUT</BaseButton
+        >
+      </div>
     </div>
+
+    <div class="cartHeader">CHECKOUT</div>
+    <CheckoutForm></CheckoutForm>
   </div>
 </template>
 
@@ -63,9 +82,23 @@ export default {
   color: black;
 }
 
+.items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.items > .splitter:not(:last-child) {
+  width: 100%;
+  border-bottom: 1px solid black;
+  margin: 0.75rem 0;
+  justify-content: center;
+}
+
 .cartHeader {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
   font-size: 5rem;
   text-align: center;
   font-weight: 300;
@@ -73,5 +106,23 @@ export default {
 
 .padding2 {
   padding-bottom: 6rem;
+}
+
+.totals {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.totalTitle {
+  font-size: 4rem;
+  font-weight: 700;
+}
+
+.price {
+  font-weight: 300;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
 }
 </style>
