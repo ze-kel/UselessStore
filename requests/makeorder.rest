@@ -1,0 +1,8 @@
+POST http://localhost:7777/api/orders
+Content-Type: application/json
+
+{
+    "username": "TestUser",
+    "name":"Test Tester",
+    "password": "1231241"
+}

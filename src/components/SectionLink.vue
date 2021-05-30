@@ -44,7 +44,7 @@ export default {};
   margin-top: -15rem;
   height: 60%;
   width: 100%;
-  background-color: var(--secondaryBackgroundLight);
+  background-color: var(--mainBackgroundLight);
   border-radius: 1.2rem;
   z-index: -2;
 }
@@ -72,18 +72,13 @@ export default {};
   z-index: -1;
 }
 
-.title,
-.link {
-  color: var(--secondaryText);
-}
-
 .title {
   font-size: 2rem;
 }
 
 .link {
   & .text {
-    color: var(--secondaryTextLight);
+    color: var(--mainTextLight);
     font-size: 1.5rem;
     text-align: center;
     line-height: 2.5rem;

@@ -63,9 +63,6 @@ export default {
     opacity: 0%;
     height: 100%;
     width: 100%;
-    &:nth-child(1) {
-      background-color: #fff;
-    }
   }
 }
 

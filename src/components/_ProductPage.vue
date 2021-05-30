@@ -37,7 +37,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="product != null" class="bgMainColor wrapper">
+  <div v-if="product != null" class="bgSecColor wrapper minVH75">
     <div class="sizeContainer">
       <div class="flexSimpleGrid">
         <div class="imageContainer">
@@ -48,13 +48,13 @@ export default {
           <div class="price">{{ formattedPrice }}</div>
           <Button
             @click="addToCart()"
-            :textColor="'var(--secondaryText)'"
-            :backColor="'white'"
+            :textColor="'var(--mainText)'"
+            :backColor="'var(--mainBackground)'"
             >Add to Cart</Button
           >
         </div>
       </div>
-      <div class="flexSimpleGrid marginTop2">
+      <div class="flexSimpleGrid bottomSection">
         <div class="deliveryStatus">DEL</div>
         <table class="specs">
           <tr :key="name" v-for="(value, name) in product.details">
@@ -73,18 +73,19 @@ export default {
 
 <style lang="scss" scoped>
 * {
-  color: var(--mainText);
+  color: var(--secondaryText);
 }
 
 .wrapper {
-  padding-bottom: 8rem;
+  padding-bottom: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: -1rem;
 }
 
-.marginTop2 {
-  margin-top: 2rem;
+.bottomSection {
+  margin-top: 5rem;
 }
 .specs {
   border-collapse: collapse;
@@ -92,7 +93,7 @@ export default {
   margin: 0 2rem;
 
   & td {
-    border-top: 0.1rem solid var(--secondaryBackgroundLight);
+    border-top: 0.1rem solid var(--mainBackgroundLight);
     padding: 1rem;
   }
 }

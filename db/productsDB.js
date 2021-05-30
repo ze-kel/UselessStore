@@ -9,7 +9,7 @@ const db = [
       "HAND0003.png",
       "HAND0004.png",
     ],
-    collection: "Neon '2020",
+    collection: "Toxic '2020",
     price: "49999",
     details: {
       Weight: "4kg",
@@ -142,7 +142,7 @@ const db = [
       "FUCK0003.png",
       "FUCK0004.png",
     ],
-    collection: "Neon '2020",
+    collection: "Toxic '2020",
     price: "89999",
     details: {
       Weight: "4kg",

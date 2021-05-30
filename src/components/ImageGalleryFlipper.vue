@@ -98,7 +98,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0%;
+    opacity: 5%;
     height: 100%;
     width: 40%;
     user-select: none;
@@ -130,7 +130,7 @@ export default {
     }
 
     &.selectedImage {
-      border: 0.1rem solid white;
+      border: 0.1rem solid var(--secondaryText);
     }
   }
 }
@@ -140,9 +140,5 @@ img {
   height: 100%;
   object-fit: contain;
   z-index: 9999;
-}
-
-.selectedImage {
-  border: 0.1rem solid white;
 }
 </style>

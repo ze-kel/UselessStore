@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       fetchedItems: {},
+      checkoutSeen: false,
     };
   },
   computed: {
@@ -30,6 +31,17 @@ export default {
       }
       return formatter.format(price);
     },
+    cartEmpty() {
+      return this.cartIds.length == 0;
+    },
+  },
+  methods: {
+    showCheckout() {
+      this.checkoutSeen = !this.checkoutSeen;
+    },
+    redirectToShop() {
+      this.$router.push("/explore");
+    },
   },
   watch: {
     cartIds: {
@@ -48,15 +60,27 @@ export default {
 </script>
 
 <template>
-  <div class="sizeContainer padding2">
-    <div class="cartHeader">CART</div>
-    <div class="flexSimpleGrid">
+  <div class="sizeContainer padding2 minVH75">
+    <div class="sectionTitle">CART</div>
+    <div v-if="cartEmpty" class="emptyInfo">
+      <div class="emptyHeading">Cart is empty</div>
+      <div>
+        <BaseButton
+          @click="redirectToShop"
+          textColor="var(--secondaryText)"
+          backColor="var(--secondaryBackground)"
+          >GO SHOPPING</BaseButton
+        >
+      </div>
+    </div>
+    <div v-else class="flexSimpleGrid">
       <div class="items">
         <template :key="id" v-for="id in cartIds">
           <CartItem
             v-if="fetchedItems[id]"
             :product="fetchedItems[id]"
             :number="cartContent[id]"
+            :active="!checkoutSeen"
           ></CartItem>
           <div class="splitter"></div>
         </template>
@@ -65,21 +89,37 @@ export default {
         <div class="totalTitle">Total:</div>
         <div class="price">{{ totalPrice }}</div>
         <BaseButton
-          textColor="var(--mainText)"
-          backColor="var(--mainBackground)"
-          >CHECKOUT</BaseButton
+          @click="showCheckout"
+          textColor="var(--secondaryText)"
+          backColor="var(--secondaryBackground)"
+        >
+          {{ checkoutSeen ? "EDIT ORDER" : "CHECKOUT" }}</BaseButton
         >
       </div>
     </div>
-
-    <div class="cartHeader">CHECKOUT</div>
-    <CheckoutForm></CheckoutForm>
+    <div :class="checkoutSeen ? '' : 'hide'" class="checkout">
+      <div class="sectionTitle">CHECKOUT</div>
+      <CheckoutForm></CheckoutForm>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-* {
-  color: black;
+.hide {
+  display: none;
+}
+
+.emptyInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.emptyHeading {
+  font-size: 4rem;
+  margin-bottom: 3rem;
 }
 
 .items {

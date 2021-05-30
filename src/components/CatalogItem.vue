@@ -42,7 +42,7 @@ export default {
   transition: 0.2s all;
 
   &:hover {
-    border: 0.1rem solid var(--mainBackground);
+    border: 0.1rem solid var(--mainText);
 
     .imageContainer {
       transform: scale(1.05) translateY(-0.5rem);
@@ -57,7 +57,6 @@ export default {
 }
 
 .text > * {
-  color: var(--secondaryText);
   text-align: center;
   display: flex;
   flex-direction: column;

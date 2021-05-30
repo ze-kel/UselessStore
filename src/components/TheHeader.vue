@@ -47,7 +47,6 @@ export default {
         </div>
       </router-link>
     </div>
-    <div class="splitLine"></div>
     <transition name="fade">
       <div
         v-if="menuVisbility"
@@ -63,6 +62,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+* {
+  color: var(--secondaryText);
+}
+
 .cart {
   position: relative;
   display: flex;
@@ -89,12 +92,12 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: var(--mainBackgroundTransparent);
+  background-color: var(--secondaryBackgroundTransparent);
   z-index: 100;
 }
 .pageSpace {
   position: relative;
-  background-color: none;
+  opacity: 0;
   z-index: -1000;
 }
 
@@ -126,8 +129,7 @@ export default {
   background-color: #fff;
 }
 
-.headerContainer,
-.headerPageSpace {
+.headerContainer {
   height: 5.5rem;
 }
 
@@ -154,18 +156,13 @@ export default {
   font-size: 2.5rem;
 }
 
-.splitLine {
-  background-color: rgb(15, 15, 15);
-  height: 1px;
-}
-
 .fullScreenFade {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-color: var(--mainBackgroundTransparent);
+  background-color: var(--secondaryBackgroundTransparent);
   display: flex;
   justify-content: center;
   align-items: center;

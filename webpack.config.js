@@ -37,16 +37,15 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: "" },
-          },
+          process.env.NODE_ENV !== "production"
+            ? "vue-style-loader"
+            : MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
           {
             loader: "sass-loader",
             options: {
-              additionalData: `@import "/src/styles/_variables.scss";`,
+              additionalData: `@import "/src/styles/_variables.scss"; `,
             },
           },
         ],

@@ -20,7 +20,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <div class="bgMainColor">
+    <div class="bgSecColor">
       <div class="mainFeature sizeContainer">
         <FeaturedProduct
           :content="{
@@ -28,6 +28,7 @@ export default {
           }"
           :styles="{
             leftAlign: true,
+            textColor: 'var(--secondaryText)',
           }"
         >
           <template v-slot:title>VULCANIC RED</template>

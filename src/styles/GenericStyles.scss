@@ -12,13 +12,12 @@
 
 html {
   font-size: 10px;
-  background-color: var(--secondaryBackground);
+  background-color: var(--mainBackground);
 }
 
 body {
   overflow-y: scroll;
 }
-
 //
 //CONTAINERS
 
@@ -48,8 +47,22 @@ body {
   }
 }
 
-.bgMainColor {
-  background-color: var(--mainBackground);
+.bgSecColor {
+  background-color: var(--secondaryBackground);
+}
+
+// SECTION TITLE
+.sectionTitle {
+  text-align: center;
+  font-size: 6rem;
+  font-weight: 200;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+//MIN VH
+.minVH75 {
+  min-height: 75vh;
 }
 
 //
@@ -58,25 +71,29 @@ input {
   width: 100%;
   height: 3rem;
   line-height: 4rem;
-  background-color: var(--secondaryBackground);
   border-radius: 0;
   border: none;
 
   border-top: 0.1rem solid transparent;
-  border-bottom: 0.1rem solid var(--secondaryText);
+  border-bottom: 0.1rem solid var(--mainText);
   transition: 0.2s all;
 
   font-weight: 600;
 
-  color: var(--secondaryTextLight);
+  background-color: var(--mainBackground);
+  color: var(--mainText);
+
+  &::placeholder {
+    font-weight: 300;
+    color: var(--mainTextLight);
+  }
 
   &:not([type="checkbox"]) {
     opacity: 30%;
     &:focus {
       opacity: 100%;
       border-top: 0.3rem solid transparent;
-      border-bottom: 0.3rem solid var(--secondaryText);
-      color: var(--secondaryText);
+      border-bottom: 0.3rem solid var(--mainText);
       outline: none;
     }
   }
@@ -86,12 +103,12 @@ input {
     height: 1.6rem;
     margin-right: 0.5rem;
     appearance: none;
-    border: 0.1rem solid var(--secondaryText);
+    border: 0.1rem solid var(--mainText);
     border-radius: 0;
     transition: 0.1s all;
 
     &:checked {
-      background-color: var(--secondaryText);
+      background-color: var(--mainText);
     }
   }
 }

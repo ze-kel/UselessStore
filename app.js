@@ -6,11 +6,13 @@ const app = express();
 const path = require("path");
 
 const productsRouter = require("./controllers/products");
+const ordersRouter = require("./controllers/orders");
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/api/products", productsRouter);
+app.use("/api/orders", ordersRouter);
 
 if (process.env.NODE_ENV === "dev") {
   console.log("Starting hot reload mode");

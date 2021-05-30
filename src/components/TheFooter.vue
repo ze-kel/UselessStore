@@ -28,12 +28,8 @@ export default {};
 </template>
 
 <style lang="scss" scoped>
-* {
-  color: var(--secondaryText);
-}
-
 .footerContainer {
-  border-top: 1px solid var(--secondaryText);
+  border-top: 1px solid var(--secondaryBackground);
   min-height: 15rem;
   width: 100%;
   padding: 2rem 0 3rem 0;
@@ -61,7 +57,7 @@ export default {};
 
 .legal {
   margin-top: 1rem;
-  color: var(--secondaryTextLight);
+  color: var(--mainTextLight);
   font-weight: 300;
 }
 

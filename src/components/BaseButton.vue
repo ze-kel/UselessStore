@@ -1,7 +1,11 @@
 <template>
-  <div class="button" :style="stylesValues">
+  <button
+    class="button"
+    :class="activated ? '' : 'inactive'"
+    :style="stylesValues"
+  >
     <slot></slot>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -10,6 +14,10 @@ export default {
     outline: {
       type: Boolean,
       default: false,
+    },
+    activated: {
+      type: Boolean,
+      default: true,
     },
     textColor: { type: String, default: "black" },
     backColor: { type: String, default: "white" },
@@ -33,13 +41,21 @@ export default {
 
 <style lang="scss" scoped>
 .button {
+  border: none;
   padding: 1.5rem 2.5rem;
   display: inline-block;
   cursor: pointer;
   font-weight: 500;
   transition: 0.1s all;
   user-select: none;
-  &:hover {
+
+  transition: opacity 1s;
+
+  &.inactive {
+    opacity: 66%;
+  }
+
+  &:not(.inactive):hover {
     transform: scale(1.04);
   }
 }

@@ -8,9 +8,9 @@ export default {
 };
 </script>
 <template>
-  <div class="bgMainColor bottomPadding">
-    <div class="sizeContainer">
-      <div class="logo bigTitle">USELESS INC.</div>
+  <div class="bgSecColor bottomPadding">
+    <div class="sizeContainer topPart">
+      <div class="logo sectionTitle">USELESS INC.</div>
       <div class="slogan bottomPadding">making useless things since 2014</div>
       <div class="flexSimpleGrid">
         <div class="description">
@@ -29,10 +29,10 @@ export default {
       </div>
     </div>
   </div>
-  <div class="bgSecondaryColor">
+  <div class="">
     <div class="sizeContainer">
       <div class="adressContainer">
-        <div class="bigTitle">VISIT US</div>
+        <div class="sectionTitle">VISIT US</div>
         <div class="flexSimpleGrid">
           <div class="mapContainer">
             <a
@@ -73,6 +73,11 @@ export default {
   font-weight: 200;
 }
 
+.topPart > *,
+.description {
+  color: var(--secondaryText);
+}
+
 .description {
   font-size: 1.9rem;
   display: flex;
@@ -93,15 +98,6 @@ img {
   height: 100%;
 }
 
-.bigTitle,
-.locationInfo {
-  color: var(--secondaryText);
-}
-
-.logo {
-  color: var(--mainText);
-}
-
 .slogan {
   text-align: center;
   font-size: 2rem;
@@ -109,13 +105,6 @@ img {
 
 .adressContainer {
   margin-bottom: 3rem;
-}
-
-.bigTitle {
-  text-align: center;
-  font-size: 6rem;
-  font-weight: 100;
-  padding-top: 2rem;
 }
 
 .mapContainer {

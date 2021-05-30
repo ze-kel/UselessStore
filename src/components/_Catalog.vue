@@ -124,10 +124,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-* {
-  color: black;
-}
-
 .itemsContainer {
   display: flex;
   justify-content: center;
@@ -154,8 +150,6 @@ export default {
   display: flex;
 }
 
-
-
 .priceBlock {
   & label {
     font-weight: 400;
@@ -166,7 +160,6 @@ export default {
     margin: 0.5rem 0 1.5rem 0;
   }
 }
-
 
 .filterContainer {
   width: 35%;

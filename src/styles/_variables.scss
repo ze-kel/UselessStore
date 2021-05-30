@@ -1,13 +1,18 @@
 * {
-  --mainText: hsl(0, 0%, 98%);
-  --mainTextLight: hsl(0, 0%, 80%);
-  --secondaryText: hsl(0, 0%, 10%);
-  --secondaryTextLight: hsl(0, 0%, 31%);
-  --mainBackground: hsl(0, 0%, 3%);
-  --mainBackgroundTransparent: hsla(0, 0%, 3%, 0.9);
-  --secondaryBackground: hsl(0, 0%, 97%);
-  --secondaryBackgroundLight: hsl(0, 0%, 90%);
+  --mainText: hsl(0, 0%, 10%);
+  --mainTextLight: hsl(0, 0%, 31%);
+  --secondaryText: hsl(0, 0%, 98%);
+  --secondaryTextLight: hsl(0, 0%, 80%);
+
+  --mainBackground: hsl(0, 0%, 97%);
+  --mainBackgroundLight: hsl(0, 0%, 90%);
+
+  --secondaryBackground: hsl(0, 0%, 3%);
+  --secondaryBackgroundTransparent: hsla(0, 0%, 3%, 0.9);
   --accentMain: rgb(226, 31, 31);
+
+  --successMain: rgb(73, 109, 27);
+  --failureMain: rgb(226, 31, 31);
 }
 
 $bp-med: 768px;

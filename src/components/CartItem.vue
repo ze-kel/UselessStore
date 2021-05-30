@@ -39,6 +39,7 @@ export default {
   props: {
     product: Object,
     number: Number,
+    active: { type: Boolean, default: true },
   },
   components: {
     BaseButton,
@@ -68,19 +69,19 @@ export default {
         {{ basePrice }}
       </div>
       <div class="numberBlock">
-        <div @click="modifyQuantity(-1)" class="quantityButton">-</div>
+        <div v-if="active" @click="modifyQuantity(-1)" class="quantityButton">
+          -
+        </div>
         <div class="num">{{ number }}</div>
-        <div @click="modifyQuantity(1)" class="quantityButton">+</div>
+        <div v-if="active" @click="modifyQuantity(1)" class="quantityButton">
+          +
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-* {
-  color: var(--secondaryText);
-}
-
 .itemContainer {
   height: 6rem;
   display: flex;
@@ -94,7 +95,7 @@ export default {
   width: 100%;
   height: 100%;
   opacity: 100%;
-  background-color: var(--secondaryText);
+  background-color: var(--mainText);
   color: white;
   position: absolute;
   display: flex;
@@ -124,6 +125,9 @@ export default {
 .numberBlock {
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  width: 8rem;
 
   & .num {
     width: 3rem;
@@ -151,6 +155,7 @@ export default {
 }
 
 .quantityBlock {
+  width: 8rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
