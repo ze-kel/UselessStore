@@ -86,6 +86,9 @@ export default {
 
 .cartLink {
   text-decoration: none;
+  width: 6rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .headerContainer {
@@ -179,18 +182,5 @@ export default {
     background-color: var(--secondaryBackground);
     color: var(--secondaryText);
   }
-}
-
-.fade-enter-active {
-  transition: all 0.1s ease-out;
-}
-
-.fade-leave-active {
-  transition: all 0.2s ease-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

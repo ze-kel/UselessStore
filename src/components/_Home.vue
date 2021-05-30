@@ -23,9 +23,7 @@ export default {
     <div class="bgSecColor">
       <div class="mainFeature sizeContainer">
         <FeaturedProduct
-          :content="{
-            image: 'CUBES0000.png',
-          }"
+          image="CUBES0000.png"
           :styles="{
             leftAlign: true,
             textColor: 'var(--secondaryText)',
@@ -50,35 +48,93 @@ export default {
         </FeaturedProduct>
       </div>
     </div>
+
     <div class="sectionLinks flexSimpleGrid sizeContainer">
-      <SectionLink></SectionLink>
-      <SectionLink></SectionLink>
-      <SectionLink></SectionLink>
+      <router-link
+        class="noTextDecoration"
+        to="/explore?collection=Toxic '2020"
+      >
+        <SectionLink
+          title="Toxic"
+          subTitle="2020"
+          image="SKULL0000.png"
+        ></SectionLink>
+      </router-link>
+      <router-link
+        class="noTextDecoration"
+        to="/explore?collection=Sky Blue '2020"
+      >
+        <SectionLink
+          title="Sky Blue"
+          subTitle="2020"
+          image="BIGTHINK0000.png"
+        ></SectionLink>
+      </router-link>
+      <router-link
+        class="noTextDecoration"
+        to="/explore?collection=White x Gold '2019"
+      >
+        <SectionLink
+          title="White x Gold"
+          subTitle="2019"
+          image="FLOWER0000.png"
+        ></SectionLink>
+      </router-link>
     </div>
+
     <div class="secondaryFeature sizeContainer">
       <FeaturedProduct
-        :content="{
-          ...product,
-          text: 'Its time to upgrade!',
-          additionalLine: '',
-        }"
+        image="HEART0000.png"
         :styles="{
+          textColor: 'var(--mainText)',
           reversed: true,
         }"
-      ></FeaturedProduct>
+      >
+        <template v-slot:title>Human Heart</template>
+        <template v-slot:addLine>TOP SELLER</template>
+        <template v-slot:text>
+          Hottest item from our latest collection.
+          <br />
+          For those who need to be reminded of their humanity.
+        </template>
+        <template v-slot:button>
+          <router-link to="/products/15">
+            <BaseButton
+              textColor="var(--mainText)"
+              backColor="var(--mainBackground)"
+            >
+              BUY NOW
+            </BaseButton>
+          </router-link>
+        </template>
+      </FeaturedProduct>
     </div>
+
     <div class="thirdaryFeature sizeContainer">
       <FeaturedProduct
-        :content="{
-          ...product,
-          text: '',
-          additionalLine: '',
-        }"
+        image="CAT0000.png"
         :styles="{
-          textColor: 'var(--mainBackground)',
-          buttonOutline: true,
+          textColor: 'var(--mainText)',
         }"
-      ></FeaturedProduct>
+      >
+        <template v-slot:title>Old But Gold</template>
+        <template v-slot:addLine>RESTOCK</template>
+        <template v-slot:text>
+          Due to a high demand we've restocked our original 2019 collection
+          "White x Gold". <br />
+          You once again can buy this awesome Egyptian Cat.
+        </template>
+        <template v-slot:button>
+          <router-link to="/products/15">
+            <BaseButton
+              textColor="var(--mainText)"
+              backColor="var(--mainBackground)"
+            >
+              I WANT SOME PUSSY
+            </BaseButton>
+          </router-link>
+        </template>
+      </FeaturedProduct>
     </div>
 
     <div class="bgMainColor"></div>
@@ -118,7 +174,7 @@ export default {
   padding-bottom: 2rem;
   min-height: 30rem;
   margin-top: 4rem;
-  background-color: var(--secondaryBackgroundLight);
+  background-color: var(--mainBackgroundLight);
   padding: 2rem;
   border-radius: 2rem;
 }

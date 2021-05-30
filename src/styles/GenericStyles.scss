@@ -18,6 +18,11 @@ html {
 body {
   overflow-y: scroll;
 }
+
+.noTextDecoration {
+  text-decoration: none;
+}
+
 //
 //CONTAINERS
 
@@ -63,6 +68,20 @@ body {
 //MIN VH
 .minVH75 {
   min-height: 75vh;
+}
+
+//TRANSITIONS
+.fade-enter-active {
+  transition: all 0.1s ease-out;
+}
+
+.fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 
 //

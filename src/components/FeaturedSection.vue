@@ -18,7 +18,7 @@
         <slot name="button"></slot>
       </div>
     </div>
-    <img class="image" :src="getImgUrl(content.image)" />
+    <img class="image" :src="getImgUrl(image)" />
   </div>
 </template>
 
@@ -27,15 +27,7 @@ import BaseButton from "./BaseButton.vue";
 
 export default {
   props: {
-    content: {
-      type: Object,
-      default: {
-        additionalLine: "New Product",
-        title: "XX99 MARK II HEADPHONES",
-        text: "",
-        image: "CUBES0000.png",
-      },
-    },
+    image: String,
     styles: {
       type: Object,
       default: {
@@ -134,6 +126,9 @@ export default {
 
 .subText {
   margin-top: 1.5rem;
+  line-height: 2rem;
+  font-size: 1.7rem;
+  font-weight: 300;
 }
 
 .slot {

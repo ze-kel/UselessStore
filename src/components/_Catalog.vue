@@ -16,6 +16,20 @@ export default {
     };
   },
   computed: {
+    sortedItems() {
+      const sortFunction = (a, b) => {
+        if (a.details.inStock < 1) {
+          return 1;
+        }
+        if (b.details.inStock < 1) {
+          return -1;
+        }
+
+        return b.id - a.id;
+      };
+
+      return this.itemsData.sort(sortFunction);
+    },
     filteredItems() {
       const allFilters = (item) => {
         //name
@@ -51,7 +65,7 @@ export default {
         return true;
       };
 
-      return this.itemsData.filter(allFilters);
+      return this.sortedItems.filter(allFilters);
     },
     awailableCollections() {
       function onlyUnique(value, index, self) {

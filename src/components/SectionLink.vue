@@ -1,17 +1,25 @@
 <script>
-export default {};
+export default {
+  props: {
+    image: String,
+    title: String,
+    subTitle: String,
+  },
+  methods: {
+    getImgUrl(pic) {
+      return require("../images/" + pic);
+    },
+  },
+};
 </script>
 
 <template>
   <div class="sectionLinkContainer">
     <div class="content">
-      <img class="image" src="../images/CUBES0000.png" />
+      <img class="image" :src="getImgUrl(image)" />
       <div class="shadow"></div>
-      <div class="title">HEADPHONES</div>
-      <div class="link">
-        <span class="text">SHOP</span>
-        <span class="linkArrow"> ></span>
-      </div>
+      <div class="title">{{ title }}</div>
+      <div class="subTitle">{{ subTitle }}</div>
     </div>
     <div class="background"></div>
   </div>
@@ -33,7 +41,7 @@ export default {};
       }
 
       & .shadow {
-        background: radial-gradient(#0000002a 0, #9198e500 40%);
+        opacity: 60%;
       }
     }
   }
@@ -70,26 +78,18 @@ export default {};
   height: 2rem;
   width: 20rem;
   z-index: -1;
+  opacity: 100%;
 }
 
 .title {
   font-size: 2rem;
 }
 
-.link {
-  & .text {
-    color: var(--mainTextLight);
-    font-size: 1.5rem;
-    text-align: center;
-    line-height: 2.5rem;
-    vertical-align: middle;
-    font-weight: 600;
-  }
-
-  & .linkArrow {
-    color: var(--accentMain);
-    font-size: 2.5rem;
-    vertical-align: middle;
-  }
+.subTitle {
+  margin-top: 0.7rem;
+  color: var(--mainTextLight);
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: 600;
 }
 </style>

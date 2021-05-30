@@ -1,9 +1,22 @@
 <script>
 import ImageHoverFlipper from "./ImageHoverFlipper.vue";
+import formatter from "../services/priceFormatter";
 
 export default {
   props: {
     product: {},
+  },
+  computed: {
+    formattedPirce() {
+      return formatter.format(Number(this.product.price));
+    },
+    inStock() {
+      if (this.product.details.inStock > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
     getImgUrl(pic) {
@@ -15,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <div class="itemContainer">
+  <div class="itemContainer" :class="inStock ? '' : 'outOfStock'">
     <div class="imageContainer">
       <ImageHoverFlipper :images="product.images"></ImageHoverFlipper>
     </div>
@@ -24,7 +37,7 @@ export default {
         {{ product.name }}
       </div>
       <div class="info">{{ product.collection }}</div>
-      <div class="price">{{ product.price }} ₽</div>
+      <div class="price">{{ inStock ? formattedPirce : "SOLD OUT" }}</div>
     </div>
   </div>
 </template>
@@ -50,6 +63,10 @@ export default {
   }
 }
 
+.outOfStock {
+  opacity: 40%;
+}
+
 .imageContainer {
   margin: 0 0.1rem;
   width: 85%;
@@ -67,7 +84,12 @@ export default {
   font-size: 2rem;
 }
 
+.info {
+  margin-top: 0.2rem;
+}
+
 .price {
   font-weight: 700;
+  margin-top: 0.4rem;
 }
 </style>

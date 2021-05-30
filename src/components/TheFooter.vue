@@ -8,7 +8,7 @@ export default {};
       <div class="aboutContainer">
         <div class="title">USLS</div>
         <div class="infoText">
-          Useless since 2014.
+          Useless since 2019.
           <br />3d models by
           <a href="https://www.myminifactory.com/scantheworld/"
             >scan the world</a

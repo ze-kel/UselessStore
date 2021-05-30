@@ -16,7 +16,9 @@ export default {
       return require("../images/" + pic);
     },
     addToCart() {
-      this.$store.commit("ADD_TO_CART", this.product.id);
+      if (this.canAddMore) {
+        this.$store.commit("ADD_TO_CART", this.product.id);
+      }
     },
   },
   computed: {
@@ -25,6 +27,12 @@ export default {
     },
     formattedPrice() {
       return formatter.format(this.product.price);
+    },
+    inCart() {
+      return this.cart[this.product.id] || 0;
+    },
+    canAddMore() {
+      return this.inCart < this.product.details.inStock;
     },
   },
   components: { Button, ImageFlipper },
@@ -46,12 +54,20 @@ export default {
         <div class="productInfo">
           <div class="mainTitle">{{ product.name }}</div>
           <div class="price">{{ formattedPrice }}</div>
-          <Button
-            @click="addToCart()"
-            :textColor="'var(--mainText)'"
-            :backColor="'var(--mainBackground)'"
-            >Add to Cart</Button
-          >
+          <div class="buttonContainer">
+            <Button
+              @click="addToCart()"
+              :textColor="'var(--mainText)'"
+              :backColor="'var(--mainBackground)'"
+              :activated="canAddMore"
+              >Add to Cart</Button
+            >
+            <transition name="fade">
+              <div v-if="inCart > 0" class="counter">
+                {{ inCart }}
+              </div></transition
+            >
+          </div>
         </div>
       </div>
       <div class="flexSimpleGrid bottomSection">
@@ -145,10 +161,24 @@ img {
     line-height: 5.5rem;
     margin-top: 1rem;
   }
+}
 
-  .button {
-    margin-top: 2rem;
-  }
+.buttonContainer {
+  margin-top: 2rem;
+  display: flex;
+}
+
+.counter {
+  background-color: var(--mainBackground);
+  color: var(--mainText);
+  width: 5rem;
+  margin-left: 1rem;
+  border-radius: 0.25rem;
+  font-weight: 300;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image {

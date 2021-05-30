@@ -26,7 +26,7 @@ export default {
       if (result === false) {
         this.submitError = true;
       } else {
-        this.$store.commit("CLEAR_CART");
+        this.$store.dispatch("CONFIRM_ORDER");
         this.$router.push("/cart/success");
       }
     },

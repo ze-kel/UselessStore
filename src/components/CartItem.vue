@@ -1,6 +1,7 @@
 <script>
 import BaseButton from "./BaseButton.vue";
 import formatter from "../services/priceFormatter";
+
 export default {
   data() {
     return {
@@ -12,6 +13,9 @@ export default {
       return require("../images/" + pic);
     },
     modifyQuantity(toAdd) {
+      if (toAdd > 0 && !this.canAddMore) {
+        return;
+      }
       if (this.number + toAdd <= 0) {
         this.deletionPopup = true;
       } else {
@@ -34,6 +38,9 @@ export default {
     },
     basePrice() {
       return formatter.format(Number(this.product.price));
+    },
+    canAddMore() {
+      return this.number < this.product.details.inStock;
     },
   },
   props: {
@@ -73,7 +80,12 @@ export default {
           -
         </div>
         <div class="num">{{ number }}</div>
-        <div v-if="active" @click="modifyQuantity(1)" class="quantityButton">
+        <div
+          v-if="active"
+          @click="modifyQuantity(1)"
+          class="quantityButton"
+          :class="canAddMore ? '' : 'inactive'"
+        >
           +
         </div>
       </div>
@@ -134,7 +146,7 @@ export default {
   }
 
   &:hover {
-    .quantityButton {
+    .quantityButton:not(.inactive) {
       opacity: 100%;
     }
   }
