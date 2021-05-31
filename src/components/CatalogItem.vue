@@ -68,8 +68,11 @@ export default {
 }
 
 .imageContainer {
-  margin: 0 0.1rem;
   width: 85%;
+
+  @media (max-width: $bp-med) {
+    width: 90%;
+  }
   height: 20rem;
 }
 

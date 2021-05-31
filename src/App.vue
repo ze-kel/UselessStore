@@ -24,4 +24,5 @@ export default {
 
 <style lang="scss">
 @import "/src/styles/GenericStyles.scss";
+@import "/src/styles/Icons.scss";
 </style>

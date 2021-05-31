@@ -8,7 +8,7 @@ export default {
 };
 </script>
 <template>
-  <div class="bgSecColor bottomPadding">
+  <div class="bgSecColor bottomPadding compensateForHeader">
     <div class="sizeContainer topPart">
       <div class="logo sectionTitle">USELESS INC.</div>
       <div class="slogan bottomPadding">making useless things since 2014</div>

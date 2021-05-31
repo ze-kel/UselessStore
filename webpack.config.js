@@ -1,13 +1,14 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const VueLoader = require("vue-loader");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const VueLoader = require("vue-loader");
 
 let mode = "development";
-
 if (process.env.NODE_ENV === "production") {
   mode = "production";
 }
+
 const additionalPlugins =
   mode === "production" ? [] : [new webpack.HotModuleReplacementPlugin()]; // Enable hot module replacement
 
@@ -33,6 +34,14 @@ module.exports = {
       {
         test: /\.(png|jpeg|jpg|gif|svg)$/i,
         type: "asset",
+        use: [
+          {
+            loader: "webpack-image-resize-loader",
+            options: {
+              width: 1000,
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
@@ -45,7 +54,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              additionalData: `@import "/src/styles/_variables.scss"; `,
+              additionalData: `@import "/src/styles/Variables.scss"; `,
             },
           },
         ],
@@ -61,13 +70,11 @@ module.exports = {
   },
 
   plugins: [
+    ...additionalPlugins,
     new MiniCssExtractPlugin(),
     new VueLoader.VueLoaderPlugin(),
     new HtmlWebpackPlugin({ title: "USLS", template: "index.html" }),
-    ...additionalPlugins,
   ],
-
-  //devtool: "source-map",
   devServer: {
     contentBase: "./dist",
     hot: true,

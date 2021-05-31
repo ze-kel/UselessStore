@@ -24,7 +24,6 @@ export default {
 </script>
 
 <template>
-  <div class="headerContainer pageSpace"></div>
   <div class="headerContainer">
     <div class="sizeContainer">
       <div class="hamburger" @click="menuVisibilitySwitch">
@@ -66,6 +65,10 @@ export default {
   color: var(--secondaryText);
 }
 
+.noDisp {
+  display: none;
+}
+
 .cart {
   position: relative;
   display: flex;
@@ -97,11 +100,6 @@ export default {
   width: 100%;
   background-color: var(--secondaryBackgroundTransparent);
   z-index: 100;
-}
-.pageSpace {
-  position: relative;
-  opacity: 0;
-  z-index: -1000;
 }
 
 .sizeContainer {

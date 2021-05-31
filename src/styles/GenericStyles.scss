@@ -35,12 +35,16 @@ body {
   }
 }
 
+.compensateForHeader {
+  padding-top: 5.5rem;
+}
+
 .flexSimpleGrid {
   display: flex;
 
   & > * {
     width: 100%;
-    @media (max-width: $bp-med) {
+    @media (max-width: $bp-sm) {
       width: 90%;
       text-align: center;
     }

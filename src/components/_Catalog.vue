@@ -5,17 +5,34 @@ import CatalogItem from "./CatalogItem.vue";
 export default {
   data() {
     return {
-      filtersSeen: true,
+      filtersSeen: false,
       itemsData: [],
       filters: {
         name: "",
-        priceFrom: 0,
-        priceTo: 9999999,
+        priceFrom: "",
+        priceTo: "",
         collections: [],
       },
     };
   },
+  methods: {
+    toggleFiltersVisibility() {
+      console.log();
+      this.filtersSeen = !this.filtersSeen;
+    },
+  },
   computed: {
+    priceFromTo() {
+      let from = 0;
+      let to = 999999999;
+      if (this.filters.priceFrom) {
+        from = Number(this.filters.priceFrom);
+      }
+      if (this.filters.priceTo) {
+        to = Number(this.filters.priceTo);
+      }
+      return [from, to];
+    },
     sortedItems() {
       const sortFunction = (a, b) => {
         if (a.details.inStock < 1) {
@@ -42,17 +59,13 @@ export default {
         }
 
         //priceFrom
-        if (this.filters.priceFrom > 0) {
-          if (Number(item.price) < this.filters.priceFrom) {
-            return false;
-          }
+        if (Number(item.price) < this.priceFromTo[0]) {
+          return false;
         }
 
         //priceTo
-        if (this.filters.priceTo < 9999999) {
-          if (Number(item.price) > this.filters.priceTo) {
-            return false;
-          }
+        if (Number(item.price) > this.priceFromTo[1]) {
+          return false;
         }
 
         //collections
@@ -86,51 +99,72 @@ export default {
 </script>
 
 <template>
-  <div class="">
-    <div class="sizeContainer flexSimpleGrid padding2">
+  <div class="sizeContainer compensateForHeader">
+    <div class="sectionTitle">PRODUCTS</div>
+
+    <div class="flexSimpleGrid">
       <div class="itemsContainer">
         <template v-if="itemsData.length > 0">
           <router-link
-            class="link"
+            class="noTextDecoration item"
             :key="item.id"
             v-for="item in filteredItems"
             :to="'/products/' + item.id"
           >
-            <CatalogItem class="item" :product="item"></CatalogItem
+            <CatalogItem :product="item"></CatalogItem
           ></router-link>
         </template>
       </div>
-      <div :class="filtersSeen ? 'showFilters' : ''" class="filterContainer">
-        <div class="filtersSectionTitle">FILTER BY</div>
-        <div class="filterName">Name:</div>
-        <input class="textInput" v-model="filters.name" />
-        <div class="filterName">Price:</div>
-        <div class="priceBlock">
-          <label class="priceLabel" for="priceFrom">From</label>
-          <input
-            id="priceFrom"
-            class="priceInput"
-            v-model="filters.priceFrom"
-          />
+
+      <div class="filterContainerOuter">
+        <div class="filtersSectionTitle" @click="toggleFiltersVisibility">
+          <span class="sectionArrow"
+            >{{ filtersSeen ? "SHOW " : "HIDE " }} </span
+          >FILTERS
+          <span
+            class="sectionArrow"
+            :class="filtersSeen ? 'gg-arrow-down' : 'gg-arrow-up'"
+          ></span>
         </div>
-        <div class="priceBlock">
-          <label class="priceLabel" for="priceFrom">To</label>
-          <input id="priceTo" class="priceInput" v-model="filters.priceTo" />
-        </div>
-        <div class="filterName">Collections:</div>
         <div
-          :key="index"
-          class="collectionFilterItem"
-          v-for="(collecitem, index) in awailableCollections"
+          class="filterContainer"
+          :class="filtersSeen ? 'hiddenOnMobile' : ''"
         >
-          <input
-            :id="'colection_checkbox_' + index"
-            class="checkboxInput"
-            type="checkbox"
-            v-model="filters.collections"
-            :value="collecitem"
-          />
-          <label :for="'colection_checkbox_' + index"> {{ collecitem }}</label>
+          <div class="filterBlock nameFilter">
+            <div class="filterName">Name:</div>
+            <input class="textInput" v-model="filters.name" />
+          </div>
+          <div class="filterBLock priceFilter">
+            <div class="filterName">Price:</div>
+            <label class="priceLabel" for="priceFrom">From</label>
+            <input
+              id="priceFrom"
+              class="priceInput"
+              v-model="filters.priceFrom"
+            />
+
+            <label class="priceLabel" for="priceFrom">To</label>
+            <input id="priceTo" class="priceInput" v-model="filters.priceTo" />
+          </div>
+          <div class="filterBlock collectionsFilter">
+            <div class="filterName">Collections:</div>
+            <div
+              :key="index"
+              class="collectionFilterItem"
+              v-for="(collecitem, index) in awailableCollections"
+            >
+              <input
+                :id="'colection_checkbox_' + index"
+                class="checkboxInput"
+                type="checkbox"
+                v-model="filters.collections"
+                :value="collecitem"
+              />
+              <label :for="'colection_checkbox_' + index">
+                {{ collecitem }}</label
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -138,19 +172,108 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.flexSimpleGrid {
+  @media (max-width: $bp-med) {
+    flex-direction: column-reverse;
+
+    & > * {
+      text-align: left;
+    }
+  }
+}
+
 .itemsContainer {
   display: flex;
   justify-content: center;
+  width: 100%;
+
+  .item {
+    width: 30%;
+    margin: 0.5rem;
+    @media (max-width: $bp-sm) {
+      width: 47%;
+    }
+  }
 }
 
-.link {
-  text-decoration: none;
+.filterContainerOuter {
+  width: 25%;
+
+  min-width: 15rem;
+  @media (max-width: $bp-med) {
+    width: 100%;
+    padding: 0 4rem;
+  }
 }
 
 .filtersSectionTitle {
-  text-align: center;
   font-weight: 700;
   font-size: 1.8rem;
+
+  display: flex;
+  align-items: center;
+  > * {
+    margin-right: 0.5rem;
+  }
+  margin-bottom: 1rem;
+
+  span {
+    display: none;
+  }
+
+  @media (max-width: $bp-med) {
+    justify-content: center;
+    font-size: 2.5rem;
+    span {
+      display: inline;
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.filterContainer {
+  border-left: 1px solid var(--secondaryText);
+  padding-bottom: 1rem;
+
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $bp-med) {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+
+    &.hiddenOnMobile {
+      display: none;
+    }
+
+    .nameFilter {
+      width: 100%;
+    }
+    .priceFilter,
+    .collectionsFilter {
+      width: 45%;
+    }
+  }
+
+  .filterName {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .priceLabel {
+    display: block;
+    margin-bottom: 0rem;
+    margin-top: 1rem;
+  }
+
+  .filterBlock {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .collectionFilterItem {
@@ -160,48 +283,12 @@ export default {
   align-items: center;
 }
 
-.priceLabel {
-  display: flex;
-}
-
-.priceBlock {
-  & label {
-    font-weight: 400;
-  }
-
-  & input {
-    width: 40%;
-    margin: 0.5rem 0 1.5rem 0;
-  }
-}
-
-.filterContainer {
-  width: 35%;
-  border-left: 1px solid var(--secondaryText);
-  padding-left: 3rem;
-  padding-bottom: 1rem;
-}
-
-.padding2 {
-  padding-top: 3rem;
+.containerPadding {
   padding-bottom: 3rem;
-}
-
-.filterName {
-  font-weight: 600;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  &:not(:first-of-type) {
-    margin-top: 3rem;
-  }
 }
 
 .itemsContainer {
   display: flex;
   flex-wrap: wrap;
-}
-.item {
-  width: 22rem;
-  margin: 0.5rem;
 }
 </style>

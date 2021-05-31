@@ -137,7 +137,7 @@ export default {
 
 .additionalInfo {
   font-size: 1.5rem;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 1rem;
   text-transform: uppercase;
 }

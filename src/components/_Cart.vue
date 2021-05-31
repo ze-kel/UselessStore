@@ -60,7 +60,7 @@ export default {
 </script>
 
 <template>
-  <div class="sizeContainer padding2 minVH75">
+  <div class="sizeContainer paddingBot minVH75 compensateForHeader">
     <div class="sectionTitle">CART</div>
     <div v-if="cartEmpty" class="emptyInfo">
       <div class="emptyHeading">Cart is empty</div>
@@ -144,7 +144,7 @@ export default {
   font-weight: 300;
 }
 
-.padding2 {
+.paddingBot {
   padding-bottom: 6rem;
 }
 

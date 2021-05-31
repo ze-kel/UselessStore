@@ -20,7 +20,7 @@ export default {
 
 <template>
   <div class="wrapper">
-    <div class="bgSecColor">
+    <div class="bgSecColor compensateForHeader">
       <div class="mainFeature sizeContainer">
         <FeaturedProduct
           image="CUBES0000.png"
@@ -86,7 +86,7 @@ export default {
       <FeaturedProduct
         image="HEART0000.png"
         :styles="{
-          textColor: 'var(--mainText)',
+          textColor: 'var(--secondaryText)',
           reversed: true,
         }"
       >
@@ -125,7 +125,7 @@ export default {
           You once again can buy this awesome Egyptian Cat.
         </template>
         <template v-slot:button>
-          <router-link to="/products/15">
+          <router-link to="/products/1">
             <BaseButton
               textColor="var(--mainText)"
               backColor="var(--mainBackground)"

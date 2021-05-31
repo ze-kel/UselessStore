@@ -45,7 +45,10 @@ export default {
 </script>
 
 <template>
-  <div v-if="product != null" class="bgSecColor wrapper minVH75">
+  <div
+    v-if="product != null"
+    class="bgSecColor wrapper minVH75 compensateForHeader"
+  >
     <div class="sizeContainer">
       <div class="flexSimpleGrid">
         <div class="imageContainer">
