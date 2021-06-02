@@ -2,7 +2,7 @@
 export default {
   methods: {
     getImgUrl(pic) {
-      return require("../images/" + pic);
+      return require('../images/' + pic);
     },
   },
 };
@@ -11,17 +11,16 @@ export default {
   <div class="bgSecColor bottomPadding compensateForHeader">
     <div class="sizeContainer topPart">
       <div class="logo sectionTitle">USELESS INC.</div>
-      <div class="slogan bottomPadding">making useless things since 2014</div>
+      <div class="slogan bottomPadding">making useless things since 2019</div>
       <div class="flexSimpleGrid">
         <div class="description">
-          We are a leading manufacturer of useless stuff. <br /><br />Our
-          clients are successful people who feel that they have too much money
-          and experience constant urges to spend more. Each of our sculptures is
-          completely useless yet costs more than high-end phone. <br />
+          We designs and sell unique modern art sculptures.
           <br />
-          To make your sculptures truly unique we offer a number of color
-          coatings for each item. For special orders we can develop a custom
-          color combination.
+          <br />
+          Out aim is to deliver exceptional quality art objects that will catch
+          people's attention and make them excited to talk about you and take
+          pics for IG.
+          <br />
         </div>
         <div class="imageContainer">
           <img :src="getImgUrl('aboutusimage.jpg')" />
@@ -56,7 +55,11 @@ export default {
             ></iframe>
           </div>
           <div class="locationInfo">
-            Россия, Москва, Большая Новодмитровская улица, «Флакон», 36С 10
+            <span class="street">Bol'shaya Novodmitrovskaya Ulitsa</span>
+            <span class="building">3Bc11</span>
+            <span class="city">Moscow</span>
+            <span class="country">Russia</span>
+            <span class="postalCode">127015</span>
           </div>
         </div>
       </div>
@@ -120,5 +123,31 @@ img {
 .locationInfo {
   width: 40%;
   padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  .street {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  .building {
+    font-size: 6rem;
+  }
+
+  .city,
+  .country {
+    font-size: 3rem;
+  }
+}
+
+.imageContainer,
+.locationInfo {
+  @media (max-width: $bp-med) {
+    margin-top: 3rem;
+  }
 }
 </style>

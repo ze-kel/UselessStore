@@ -19,9 +19,10 @@ export default {};
         </div>
       </div>
       <div class="linkContainer">
-        <div class="gg-instagram"></div>
-        <div class="gg-facebook"></div>
-        <div class="gg-twitter"></div>
+        <a href="https://www.instagram.com/ze_kel/">
+          <div class="gg-instagram"></div
+        ></a>
+        <a href="https://github.com/"> <div class="icss-github"></div></a>
       </div>
     </div>
   </div>
@@ -44,8 +45,9 @@ export default {};
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  & > *:not(:last-child) {
-    margin-right: 2rem;
+
+  a {
+    padding: 1rem;
   }
 }
 
@@ -69,6 +71,4 @@ export default {};
 //
 //ICONS
 //
-
-
 </style>

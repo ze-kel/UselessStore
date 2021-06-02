@@ -32,12 +32,12 @@ export default {
   props: {
     images: {
       type: Array,
-      default: ["CAT0001.png", "CAT0004.png"],
+      default: ['CAT0001.png', 'CAT0004.png'],
     },
   },
   methods: {
     getImgUrl(pic) {
-      return require("../images/" + pic);
+      return require('../images/' + pic);
     },
     selectImage(index) {
       this.selected = index;
@@ -93,7 +93,7 @@ export default {
   & .arrowButton {
     transition: 0.5s all;
     font-size: 7rem;
-    font-weight: 100;
+    font-weight: 200;
     color: white;
     display: flex;
     justify-content: center;

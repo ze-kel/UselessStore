@@ -66,6 +66,12 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.(woff|woff2|ttf)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
     ],
   },
 

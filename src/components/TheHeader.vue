@@ -12,7 +12,7 @@ export default {
       if (cartArray.length < 1) {
         return 0;
       }
-      return cartArray.reduce((a, b) => ["v", a[1] + b[1]])[1];
+      return cartArray.reduce((a, b) => ['v', a[1] + b[1]])[1];
     },
   },
   methods: {
@@ -177,7 +177,6 @@ export default {
     max-width: 50rem;
     align-items: center;
     font-size: 3rem;
-    background-color: var(--secondaryBackground);
     color: var(--secondaryText);
   }
 }

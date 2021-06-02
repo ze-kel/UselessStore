@@ -1,12 +1,12 @@
 <script>
-import productsServise from "../services/orders";
+import productsServise from '../services/orders';
 
-import { Field, Form } from "vee-validate";
-import { isValidPhoneNumber } from "libphonenumber-js";
+import { Field, Form } from 'vee-validate';
+import { isValidPhoneNumber } from 'libphonenumber-js';
 
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue';
 
-import FormTextInput from "./FormTextInput.vue";
+import FormTextInput from './FormTextInput.vue';
 
 export default {
   data() {
@@ -26,36 +26,36 @@ export default {
       if (result === false) {
         this.submitError = true;
       } else {
-        this.$store.dispatch("CONFIRM_ORDER");
-        this.$router.push("/cart/success");
+        this.$store.dispatch('CONFIRM_ORDER');
+        this.$router.push('/cart/success');
       }
     },
     validateName(value) {
       if (!value) {
-        return "Name is required";
+        return 'Name is required';
       }
       return true;
     },
     validateEmail(value) {
       if (!value) {
-        return "Email is required";
+        return 'Email is required';
       }
 
       if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        return "Must be a valid email";
+        return 'Must be a valid email';
       }
 
       return true;
     },
     validatePhone(value) {
       if (!isValidPhoneNumber(String(value))) {
-        return "Please enter a valid phone number";
+        return 'Please enter a valid phone number';
       }
       return true;
     },
     validateAddress(value) {
       if (!value) {
-        return "Adress is required";
+        return 'Adress is required';
       }
       return true;
     },
@@ -115,6 +115,7 @@ export default {
 .buttonContainer {
   margin-top: 2rem;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 

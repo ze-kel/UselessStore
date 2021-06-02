@@ -1,6 +1,6 @@
 <script>
-import productService from "../services/products";
-import CatalogItem from "./CatalogItem.vue";
+import productService from '../services/products';
+import CatalogItem from './CatalogItem.vue';
 
 export default {
   data() {
@@ -8,9 +8,9 @@ export default {
       filtersSeen: false,
       itemsData: [],
       filters: {
-        name: "",
-        priceFrom: "",
-        priceTo: "",
+        name: '',
+        priceFrom: '',
+        priceTo: '',
         collections: [],
       },
     };
@@ -119,16 +119,16 @@ export default {
       <div class="filterContainerOuter">
         <div class="filtersSectionTitle" @click="toggleFiltersVisibility">
           <span class="sectionArrow"
-            >{{ filtersSeen ? "SHOW " : "HIDE " }} </span
+            >{{ filtersSeen ? 'HIDE ' : 'SHOW ' }} </span
           >FILTERS
           <span
             class="sectionArrow"
-            :class="filtersSeen ? 'gg-arrow-down' : 'gg-arrow-up'"
+            :class="filtersSeen ? 'gg-arrow-up' : 'gg-arrow-down'"
           ></span>
         </div>
         <div
           class="filterContainer"
-          :class="filtersSeen ? 'hiddenOnMobile' : ''"
+          :class="filtersSeen ? '' : 'hiddenOnMobile'"
         >
           <div class="filterBlock nameFilter">
             <div class="filterName">Name:</div>

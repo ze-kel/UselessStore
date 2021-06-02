@@ -1,9 +1,10 @@
 <script>
-import productService from "../services/products";
-import Button from "./BaseButton.vue";
-import ImageFlipper from "./ImageGalleryFlipper.vue";
+import productService from '../services/products';
+import Button from './BaseButton.vue';
+import ImageFlipper from './ImageGalleryFlipper.vue';
+import DeliveryInfo from './DevilveryInfo.vue';
 
-import formatter from "../services/priceFormatter";
+import formatter from '../services/priceFormatter';
 
 export default {
   data() {
@@ -13,12 +14,15 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../images/" + pic);
+      return require('../images/' + pic);
     },
     addToCart() {
       if (this.canAddMore) {
-        this.$store.commit("ADD_TO_CART", this.product.id);
+        this.$store.commit('ADD_TO_CART', this.product.id);
       }
+    },
+    formatCamelcase(input) {
+      return input.replace(/([a-z])([A-Z])/g, '$1 $2');
     },
   },
   computed: {
@@ -35,7 +39,7 @@ export default {
       return this.inCart < this.product.details.inStock;
     },
   },
-  components: { Button, ImageFlipper },
+  components: { Button, ImageFlipper, DeliveryInfo },
   mounted() {
     productService
       .getProduct(this.$route.params.id)
@@ -74,11 +78,11 @@ export default {
         </div>
       </div>
       <div class="flexSimpleGrid bottomSection">
-        <div class="deliveryStatus">DEL</div>
+        <div class="deliveryStatus"><DeliveryInfo></DeliveryInfo></div>
         <table class="specs">
           <tr :key="name" v-for="(value, name) in product.details">
             <td>
-              {{ name }}
+              {{ formatCamelcase(name) }}
             </td>
             <td>
               {{ value }}
@@ -105,31 +109,45 @@ export default {
 
 .bottomSection {
   margin-top: 5rem;
+  @media (max-width: $bp-med) {
+    flex-direction: column-reverse;
+  }
+  padding-bottom: 3rem;
 }
 .specs {
   border-collapse: collapse;
-
   margin: 0 2rem;
+  text-transform: capitalize;
 
+  tr:not(:last-of-type) {
+    td {
+      border-bottom: 0.1rem solid var(--mainBackgroundLight);
+    }
+  }
   & td {
-    border-top: 0.1rem solid var(--mainBackgroundLight);
-    padding: 1rem;
+    padding: 1.3rem;
+    @media (max-width: $bp-med) {
+      border-bottom: 0.1rem solid var(--mainBackgroundLight);
+    }
   }
 }
 
 .deliveryStatus {
   width: 40%;
-  background-color: red;
+  border-right: 1px solid white;
   @media (max-width: $bp-med) {
-    margin-top: 2rem;
+    width: 100%;
     width: 90%;
     text-align: center;
+    border: none;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 }
 
 .price {
-  font-weight: 200;
-  font-size: 4rem;
+  font-weight: 100;
+  font-size: 5rem;
   margin-top: 1rem;
 }
 
@@ -152,9 +170,10 @@ img {
 
   margin-left: 5rem;
   @media (max-width: $bp-med) {
+    text-align: center;
     margin-left: 0;
     align-items: center;
-    width: 60%;
+    width: 80%;
   }
 
   .mainTitle {

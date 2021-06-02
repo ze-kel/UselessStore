@@ -10,7 +10,7 @@ const db = [
       "CAT0004.png",
     ],
     collection: "White x Gold '2019",
-    price: "69999",
+    price: "699",
     details: {
       weight: "5kg",
       dimensions: "66 x 169 x 128 cm",
@@ -29,7 +29,7 @@ const db = [
       "FLOWER0004.png",
     ],
     collection: "White x Gold '2019",
-    price: "75999",
+    price: "759",
     details: {
       weight: "4.5kg",
       dimensions: "180 x 155 x 193 cm",
@@ -48,7 +48,7 @@ const db = [
       "JAR0004.png",
     ],
     collection: "White x Gold '2019",
-    price: "65999",
+    price: "659",
     details: {
       weight: "3kg",
       dimensions: "110 x 162 x 112 cm",
@@ -68,7 +68,7 @@ const db = [
       "BIGTHINK0004.png",
     ],
     collection: "Sky Blue '2020",
-    price: "99999",
+    price: "999",
     details: {
       weight: "8kg",
       dimensions: "100 x 166 x 132 cm",
@@ -87,7 +87,7 @@ const db = [
       "BIRDIE0004.png",
     ],
     collection: "Sky Blue '2020",
-    price: "39999",
+    price: "399",
     details: {
       weight: "1.25kg",
       dimensions: "102 x 180 x 105 cm",
@@ -106,7 +106,7 @@ const db = [
       "PILLAR0004.png",
     ],
     collection: "Sky Blue '2020",
-    price: "59999",
+    price: "599",
     details: {
       weight: "3kg",
       dimensions: "60 x 179 x 60 cm",
@@ -125,7 +125,7 @@ const db = [
       "VASE0004.png",
     ],
     collection: "Sky Blue '2020",
-    price: "85999",
+    price: "859",
     details: {
       weight: "1.7kg",
       dimensions: "141 x 172 x 141 cm",
@@ -144,7 +144,7 @@ const db = [
       "HAND0004.png",
     ],
     collection: "Toxic '2020",
-    price: "46999",
+    price: "469",
     details: {
       weight: "3.3kg",
       dimensions: "203 x 175 x 64 cm",
@@ -163,7 +163,7 @@ const db = [
       "FUCK0004.png",
     ],
     collection: "Toxic '2020",
-    price: "25999",
+    price: "259",
     details: {
       weight: "3.5kg",
       dimensions: "62 x 172 x 72 cm",
@@ -182,7 +182,7 @@ const db = [
       "SKULL0004.png",
     ],
     collection: "Toxic '2020",
-    price: "45999",
+    price: "459",
     details: {
       weight: "4.2kg",
       dimensions: "85 x 163 x 107 cm",
@@ -201,7 +201,7 @@ const db = [
       "DINO0004.png",
     ],
     collection: "Vulcanic '2021",
-    price: "42999",
+    price: "429",
     details: {
       weight: "1.7kg",
       dimensions: "231 x 137 x 129 cm",
@@ -220,7 +220,7 @@ const db = [
       "COUPLEHANDS0004.png",
     ],
     collection: "Vulcanic '2021",
-    price: "62999",
+    price: "629",
     details: {
       weight: "2.7kg",
       dimensions: "173 x 81 x 88 cm",
@@ -239,7 +239,7 @@ const db = [
       "CUBES0004.png",
     ],
     collection: "Vulcanic '2021",
-    price: "25999",
+    price: "259",
     details: {
       weight: "6kg",
       dimensions: "150 x 160 x 155 cm",
@@ -258,7 +258,7 @@ const db = [
       "DRAGON0004.png",
     ],
     collection: "Vulcanic '2021",
-    price: "84999",
+    price: "849",
     details: {
       weight: "4.4kg",
       dimensions: "213 x 114 x 46 cm",
@@ -277,7 +277,7 @@ const db = [
       "HEART0004.png",
     ],
     collection: "Vulcanic '2021",
-    price: "91999",
+    price: "919",
     details: {
       weight: "2.7kg",
       dimensions: "177 x 66 x 113 cm",

@@ -1,11 +1,11 @@
 <script>
-import CartItem from "./CartItem.vue";
-import BaseButton from "./BaseButton.vue";
-import CheckoutForm from "./CheckoutForm.vue";
+import CartItem from './CartItem.vue';
+import BaseButton from './BaseButton.vue';
+import CheckoutForm from './CheckoutForm.vue';
 
-import productService from "../services/products";
+import productService from '../services/products';
 
-import formatter from "../services/priceFormatter";
+import formatter from '../services/priceFormatter';
 
 export default {
   data() {
@@ -40,7 +40,7 @@ export default {
       this.checkoutSeen = !this.checkoutSeen;
     },
     redirectToShop() {
-      this.$router.push("/explore");
+      this.$router.push('/explore');
     },
   },
   watch: {
@@ -93,7 +93,7 @@ export default {
           textColor="var(--secondaryText)"
           backColor="var(--secondaryBackground)"
         >
-          {{ checkoutSeen ? "EDIT ORDER" : "CHECKOUT" }}</BaseButton
+          {{ checkoutSeen ? 'EDIT ORDER' : 'CHECKOUT' }}</BaseButton
         >
       </div>
     </div>
@@ -164,5 +164,10 @@ export default {
   font-weight: 300;
   font-size: 5rem;
   margin-bottom: 1.5rem;
+}
+
+.checkout {
+  max-width: 50rem;
+  margin: 0 auto;
 }
 </style>

@@ -1,10 +1,10 @@
 <script>
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue';
 export default {
   components: { BaseButton },
   mounted() {
     if (!this.$store.state.confirmedOrder) {
-      this.$router.push("/explore");
+      this.$router.push('/explore');
     }
   },
 };

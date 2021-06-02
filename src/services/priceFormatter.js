@@ -1,5 +1,5 @@
-export default new Intl.NumberFormat("ru-RU", {
+export default new Intl.NumberFormat("us-US", {
   style: "currency",
-  currency: "RUB",
+  currency: "USD",
   maximumFractionDigits: 0,
 });

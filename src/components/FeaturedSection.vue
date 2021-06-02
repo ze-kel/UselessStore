@@ -18,12 +18,12 @@
         <slot name="button"></slot>
       </div>
     </div>
-    <img class="image" :src="getImgUrl(image)" />
+    <img class="image" height:='1000px' :src="getImgUrl(image)" />
   </div>
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
+import BaseButton from './BaseButton.vue';
 
 export default {
   props: {
@@ -33,13 +33,13 @@ export default {
       default: {
         leftAlign: false,
         reversed: false,
-        textColor: "var(--mainText)",
+        textColor: 'var(--mainText)',
       },
     },
   },
   methods: {
     getImgUrl(pic) {
-      return require("../images/" + pic);
+      return require('../images/' + pic);
     },
   },
   components: { BaseButton },
