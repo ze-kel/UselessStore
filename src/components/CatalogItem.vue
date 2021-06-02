@@ -1,6 +1,6 @@
 <script>
-import ImageHoverFlipper from './ImageHoverFlipper.vue';
-import formatter from '../services/priceFormatter';
+import ImageHoverFlipper from "./ImageHoverFlipper.vue";
+import formatter from "../services/priceFormatter";
 
 export default {
   props: {
@@ -18,11 +18,6 @@ export default {
       }
     },
   },
-  methods: {
-    getImgUrl(pic) {
-      return require('../images/' + pic);
-    },
-  },
   components: { ImageHoverFlipper },
 };
 </script>
@@ -37,7 +32,7 @@ export default {
         {{ product.name }}
       </div>
       <div class="info">{{ product.collection }}</div>
-      <div class="price">{{ inStock ? formattedPirce : 'SOLD OUT' }}</div>
+      <div class="price">{{ inStock ? formattedPirce : "SOLD OUT" }}</div>
     </div>
   </div>
 </template>

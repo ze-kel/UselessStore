@@ -1,10 +1,10 @@
 <script>
-import productService from '../services/products';
-import Button from './BaseButton.vue';
-import ImageFlipper from './ImageGalleryFlipper.vue';
-import DeliveryInfo from './DevilveryInfo.vue';
+import productService from "../services/products";
+import Button from "./BaseButton.vue";
+import ImageFlipper from "./ImageGalleryFlipper.vue";
+import DeliveryInfo from "./DevilveryInfo.vue";
 
-import formatter from '../services/priceFormatter';
+import formatter from "../services/priceFormatter";
 
 export default {
   data() {
@@ -14,15 +14,15 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require('../images/' + pic);
+      return require("../images/products/xl/" + pic);
     },
     addToCart() {
       if (this.canAddMore) {
-        this.$store.commit('ADD_TO_CART', this.product.id);
+        this.$store.commit("ADD_TO_CART", this.product.id);
       }
     },
     formatCamelcase(input) {
-      return input.replace(/([a-z])([A-Z])/g, '$1 $2');
+      return input.replace(/([a-z])([A-Z])/g, "$1 $2");
     },
   },
   computed: {

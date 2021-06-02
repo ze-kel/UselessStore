@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../images/" + pic);
+      return require("../images/products/sm/" + pic);
     },
     selectImage(index) {
       this.selected = index;

@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../images/" + pic);
+      return require("../images/products/sm/" + pic);
     },
     modifyQuantity(toAdd) {
       if (toAdd > 0 && !this.canAddMore) {
