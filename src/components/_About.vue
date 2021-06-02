@@ -2,7 +2,7 @@
 export default {
   methods: {
     getImgUrl(pic) {
-      return require('../images/' + pic);
+      return require("../images/" + pic);
     },
   },
 };
@@ -14,7 +14,7 @@ export default {
       <div class="slogan bottomPadding">making useless things since 2019</div>
       <div class="flexSimpleGrid">
         <div class="description">
-          We designs and sell unique modern art sculptures.
+          We designs and sell unique modern art style sculptures.
           <br />
           <br />
           Out aim is to deliver exceptional quality art objects that will catch
@@ -32,35 +32,24 @@ export default {
     <div class="sizeContainer">
       <div class="adressContainer">
         <div class="sectionTitle">VISIT US</div>
-        <div class="flexSimpleGrid">
-          <div class="mapContainer">
-            <a
-              href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
-              style="color: #eee; font-size: 12px; position: absolute; top: 0px"
-              >Москва</a
-            ><a
-              href="https://yandex.ru/maps/213/moscow/?ll=37.585525%2C55.805064&utm_medium=mapframe&utm_source=maps&z=18.2"
-              style="
-                color: #eee;
-                font-size: 12px;
-                position: absolute;
-                top: 14px;
-              "
-              >Москва — Яндекс.Карты</a
-            ><iframe
-              src="https://yandex.ru/map-widget/v1/-/CCUaUKvocC"
-              frameborder="0"
-              allowfullscreen="true"
-              style="position: relative"
-            ></iframe>
-          </div>
-          <div class="locationInfo">
-            <span class="street">Bol'shaya Novodmitrovskaya Ulitsa</span>
-            <span class="building">3Bc11</span>
-            <span class="city">Moscow</span>
-            <span class="country">Russia</span>
-            <span class="postalCode">127015</span>
-          </div>
+        <div class="mapContainer">
+          <a
+            href="https://yandex.ru/maps/213/moscow/?utm_medium=mapframe&utm_source=maps"
+            style="color: #eee; font-size: 12px; position: absolute; top: 0px"
+            >Москва</a
+          ><a
+            href="https://yandex.ru/maps/213/moscow/?ll=37.585525%2C55.805064&utm_medium=mapframe&utm_source=maps&z=18.2"
+            style="color: #eee; font-size: 12px; position: absolute; top: 14px"
+            >Москва — Яндекс.Карты</a
+          ><iframe
+            src="https://yandex.ru/map-widget/v1/-/CCUaUKvocC"
+            frameborder="0"
+            allowfullscreen="true"
+            style="position: relative"
+          ></iframe>
+        </div>
+        <div class="locationInfo">
+          Bol'shaya Novodmitrovskaya Ulitsa, 3Bc11, Moscow, Russia
         </div>
       </div>
     </div>
@@ -121,7 +110,6 @@ img {
 }
 
 .locationInfo {
-  width: 40%;
   padding: 0 2rem;
   display: flex;
   justify-content: center;
@@ -129,19 +117,8 @@ img {
   align-items: center;
   text-align: center;
 
-  .street {
-    font-size: 2.5rem;
-    font-weight: 600;
-  }
-
-  .building {
-    font-size: 6rem;
-  }
-
-  .city,
-  .country {
-    font-size: 3rem;
-  }
+  font-size: 2rem;
+  margin-top: 2rem;
 }
 
 .imageContainer,
