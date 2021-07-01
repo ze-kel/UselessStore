@@ -17,6 +17,16 @@ const additionalEntries =
     ? []
     : ["webpack-hot-middleware/client?http://localhost:8000"];
 
+
+const imageOptimization = mode === "production" ? [
+  {
+    loader: "webpack-image-resize-loader",
+    options: {
+      width: 1000,
+    },
+  },
+] : []
+
 module.exports = {
   mode: mode,
   output: {
@@ -34,14 +44,7 @@ module.exports = {
       {
         test: /\.(png|jpeg|jpg|gif|svg)$/i,
         type: "asset",
-        use: [
-          {
-            loader: "webpack-image-resize-loader",
-            options: {
-              width: 1000,
-            },
-          },
-        ],
+        use: imageOptimization
       },
       {
         test: /\.scss$/,

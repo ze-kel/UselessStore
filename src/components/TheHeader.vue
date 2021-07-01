@@ -119,7 +119,7 @@ export default {
   flex-direction: column;
   height: 40%;
   justify-content: space-around;
-  @media (min-width: $bp-sm) {
+  @media (min-width: $bp-med) {
     display: none;
     margin: 0;
   }
