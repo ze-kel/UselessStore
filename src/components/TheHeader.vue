@@ -31,7 +31,7 @@ export default {
         <div class="hamburgerPart"></div>
         <div class="hamburgerPart"></div>
       </div>
-      <div class="title">USLS</div>
+      <router-link class="title" to="/">USLS</router-link>
       <div class="menuContainer">
         <router-link class="link" to="/">Home</router-link>
         <router-link class="link" to="/explore">Explore</router-link>
@@ -119,7 +119,7 @@ export default {
   flex-direction: column;
   height: 40%;
   justify-content: space-around;
-  @media (min-width: $bp-med) {
+  @media (min-width: $bp-sm) {
     display: none;
     margin: 0;
   }
@@ -155,6 +155,7 @@ export default {
 .title {
   font-weight: 700;
   font-size: 2.5rem;
+  text-decoration: none;
 }
 
 .fullScreenFade {

@@ -18,7 +18,7 @@
         <slot name="button"></slot>
       </div>
     </div>
-    <img class="image" height:='1000px' :src="getImgUrl(image)" />
+    <img class="image" :src="getImgUrl(image)" />
   </div>
 </template>
 

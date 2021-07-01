@@ -97,10 +97,11 @@ label {
 }
 
 .TextInput.success input {
+  opacity: 100%;
   border-bottom-color: var(--successMain);
 }
 
-.TextInput.touched input {
-  opacity: 100%;
+.TextInput:focus input {
+  opacity: 80%;
 }
 </style>

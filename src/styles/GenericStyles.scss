@@ -11,6 +11,10 @@
 
 html {
   font-size: 10px;
+  
+  @media (max-width: $bp-med) {
+    font-size: 8px;
+  }
   background-color: var(--mainBackground);
 }
 
