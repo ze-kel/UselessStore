@@ -32,12 +32,12 @@ export default {
   props: {
     images: {
       type: Array,
-      default: ['CAT0001.png', 'CAT0004.png'],
+      default: ["CAT0001.png", "CAT0004.png"],
     },
   },
   methods: {
     getImgUrl(pic) {
-      return require('../images/products/xl/' + pic);
+      return require("../images/products/xl/" + pic);
     },
     selectImage(index) {
       this.selected = index;
@@ -140,5 +140,10 @@ img {
   height: 100%;
   object-fit: contain;
   z-index: 9999;
+}
+
+.image {
+  width: 500px;
+  height: 500px;
 }
 </style>
