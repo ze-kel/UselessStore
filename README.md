@@ -1,6 +1,6 @@
 ## Useless Store
 
-![cover image](CoverImage.png)
+[![cover image](CoverImage.png)](https://kkkkk-useless.herokuapp.com/)
 
 Mock store using vue js and super simple express backend.
 
